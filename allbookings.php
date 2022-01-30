@@ -1,4 +1,5 @@
 <?php
+require("login-check/login-check-admin.php");
 include("config.php");
 session_start(); ?>
 <!DOCTYPE html>
@@ -14,7 +15,7 @@ session_start(); ?>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </head>
 <body>
-<?php include 'nav&footer/nav.php' ?>
+<?php include 'nav&footer/adminNav.php' ?>
 <div class="main-container ">
     <form method="post" style="margin-top: 30px">
         <div class="container">
@@ -30,7 +31,7 @@ session_start(); ?>
                             $bid = $_POST["btnView"];
                             $conn = new PDO($db, $un, $password);
                             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                            $query =  "SELECT `BID`,packages.Name,bookings.Name,`Start`, `End`, `BDay`, bookings.Des, `Status` FROM bookings JOIN packages ON Package=packages.ID WHERE bookings.BID=$bid;";
+                            $query =  "SELECT `BID`,packages.Name,bookings.Name,`Start`, `End`, `BDay`, bookings.Des, `Status`,bookings.Des,`No`,`Total` FROM bookings JOIN packages ON Package=packages.ID WHERE bookings.BID=$bid;";
                             $result = $conn->query($query);
                             echo '<h3 style="text-align: center;">Tour Information</h3>';
                             echo '<table class="table" style="margin-top: 50px">';
@@ -38,12 +39,15 @@ session_start(); ?>
                             foreach ($result as $row) {
                                 if ($row[7]==0){
                                     $Status="Pending";
+                                    $iconColor ="#B49900";
                                 }
                                 elseif ($row[7]==1){
                                     $Status="Removed";
+                                    $iconColor ="red";
                                 }
                                 elseif($row[7]==2){
                                     $Status="Confirmed";
+                                    $iconColor ="green";
                                 }
 
                                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -76,11 +80,24 @@ session_start(); ?>
                                 echo '<td>' . $row[5] . '</td>';
                                 echo '</tr>';
                                 echo '<tr>';
+                                echo '<td><b>Total Ammount:</b></td>';
+                                echo '<td>Rs.' . $row[10]. '.00/=</td>';
+                                echo '</tr>';
+                                echo '<tr>';
+                                echo '<td><b>No of Passengers:</b></td>';
+                                echo '<td>' . $row[9]. '</td>';
+                                echo '</tr>';
+                                echo '<tr>';
                                 echo '<td><b>Status:</b></td>';
-                                echo '<td>' . $Status . '</td>';
+                                echo '<td><i class="fas fa-circle" style="color:'.$iconColor.'"></i> ' . $Status . '</td>';
+                                echo '</tr>';
+                                echo '<tr>';
+                                echo '<td><b>Description:</b></td>';
+                                echo '<td>' . $row[8] . '</td>';
                                 echo '</tr>';
                                 echo ' </tbody>';
                                 echo '<td style="vertical-align: middle;"><button class="btn btn-primary form-btn" style="margin: auto" name="btnCon" type="submit" value="'.$row[0].'"  >Confirm Booking</button></td>';
+                                echo '<td style="vertical-align: middle;"><button class="btn btn-primary form-btn" style="margin: auto" name="btnCan" type="submit" value="'.$row[0].'"  >Cancel Booking</button></td>';
                                 echo '<td style="vertical-align: middle;"><button class="btn btn-primary form-btn" style="margin: auto" name="Del" type="submit" value="'.$row[0].'"  >Delete Booking</button></td>';
                             }
                             echo '</table>';
@@ -112,7 +129,7 @@ session_start(); ?>
 
                         $conn = new PDO($db, $un, $password);
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $query = "SELECT `BID`,packages.Name,`Status` FROM bookings  JOIN packages ON Package=packages.ID ORDER BY `Status` ASC";
+                        $query = "SELECT `BID`,packages.Name,`Status`,bookings.Name FROM bookings  JOIN packages ON Package=packages.ID ORDER BY `Status` ASC";
                         $result = $conn->query($query);
                         echo '<h3 style="text-align: center;">All Bookings</h3>';
                         echo '<table class="table" style="border:solid #dee2e6 1px;">';
@@ -120,6 +137,7 @@ session_start(); ?>
                         echo '<tr>
 
                             <th scope="col">Package</th>
+                            <th scope="col">User</th>
                             <th scope="col">Status</th>
                             <th scope="col"></th>
                             
@@ -127,20 +145,32 @@ session_start(); ?>
                           </tr>';
                         foreach($result as $row)
                         {
+
                             if ($row[2]==0){
                                 $Status="Pending";
+                                $iconColor ="#B49900";
                             }
                             elseif ($row[2]==1){
                                 $Status="Removed";
+                                $iconColor ="red";
                             }
                             elseif($row[2]==2){
                                 $Status="Confirmed";
+                                $iconColor ="green";
+                            }
+                            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                            $query = "SELECT `Username` FROM `users` WHERE `UID`=$row[3]";
+                            $result = $conn->query($query);
+                            foreach($result as $row1){
+                                $name=$row1[0];
+
                             }
 
                             echo '<tbody>';
                             echo '<tr class="rw">';
-                            echo '<td style="vertical-align: middle;"> <input type="hidden" name="pID[]" value="' . $row[1] . '">'. $row[1] . '</td>';
-                            echo '<td style="vertical-align: middle;"> <input type="hidden" name="pID[]" value="' . $row[2] . '">'. $Status . '</td>';
+                            echo '<td style="vertical-align: middle;"> <input type="hidden" name="pID[]">'. $row[1] . '</td>';
+                            echo '<td style="vertical-align: middle;"> <input type="hidden" name="pID[]" >'. $name . '</td>';
+                            echo '<td style="vertical-align: middle;"> <input type="hidden" name="pID[]" ><i class="fas fa-circle" style="color:'.$iconColor.'"></i></td>';
                             echo '<td style="vertical-align: middle;"><button class="btn btn-primary form-btn" style="margin: auto" name="btnView" type="submit" value="'.$row[0].'"  >Info</button></td>';
 
 
@@ -195,6 +225,27 @@ elseif (isset($_POST["Del"])) {
         echo $th->getMessage();
 
     }
+}
+elseif (isset($_POST['btnCan'])) {
+
+
+        try {
+            $upStat=1;
+            $rmv =$_POST['btnCan'];
+            $conn = new PDO($db, $un, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $query = "UPDATE `bookings` SET `Status`=? WHERE `BID`=$rmv";
+            $st = $conn->prepare($query);
+            $st->bindValue(1,$upStat,PDO::PARAM_STR);
+            $st->execute();
+            echo "<script> alert('Removed Booking Successfully!');</script>";
+
+
+        } catch (PDOException $th) {
+            echo $th->getMessage();
+
+        }
+
 }
 ?>
 

@@ -1,4 +1,5 @@
 <?php
+require("login-check/login-check-user.php");
 include("config.php");
 session_start(); ?>
 <!DOCTYPE html>
@@ -30,12 +31,24 @@ session_start(); ?>
                             $bid = $_POST["btnView"];
                             $conn = new PDO($db, $un, $password);
                             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                            $query =  "SELECT `BID`,packages.Name,`Start`, `End`, `BDay`, bookings.Des, `Status` FROM bookings  JOIN packages ON Package=packages.ID WHERE bookings.BID=$bid;";
+                            $query =  "SELECT `BID`,packages.Name,`Start`, `End`, `BDay`, bookings.Des, `Status`,`No`,`Total` FROM bookings  JOIN packages ON Package=packages.ID WHERE bookings.BID=$bid;";
                             $result = $conn->query($query);
                             echo '<h3 style="text-align: center;">Tour Information</h3>';
                             echo '<table class="table" style="margin-top: 50px">';
 
                             foreach ($result as $row) {
+                                if ($row[6]==0){
+                                    $Status="Pending";
+                                    $iconColor ="#B49900";
+                                }
+                                elseif ($row[6]==1){
+                                    $Status="Removed";
+                                    $iconColor ="red";
+                                }
+                                elseif($row[6]==2){
+                                    $Status="Confirmed";
+                                    $iconColor ="green";
+                                }
                                 echo '<tbody>';
                                 echo '<tr>';
                                 echo '<td><b>Package:</b></td>';
@@ -54,11 +67,19 @@ session_start(); ?>
                                 echo '<td>' . $row[4] . '</td>';
                                 echo '</tr>';
                                 echo '<tr>';
+                                echo '<td><b>No of Passengers:</b></td>';
+                                echo '<td>' . $row[7] . '</td>';
+                                echo '</tr>';
+                                echo '<tr>';
+                                echo '<td><b>Total Amount:</b></td>';
+                                echo '<td>Rs.' . $row[8] . '.00/=</td>';
+                                echo '</tr>';
+                                echo '<tr>';
                                 echo '<td><b>Status:</b></td>';
-                                echo '<td>' . $row[6] . '</td>';
+                                echo '<td><i class="fas fa-circle" style="color:'.$iconColor.'"></i> ' . $Status . '</td>';
                                 echo '</tr>';
                                 echo ' </tbody>';
-                                echo '<td style="vertical-align: middle;"><button class="btn btn-primary form-btn" style="margin: auto" name="btnEdit" type="submit" value="'.$row[0].'"  >Change Dates</button></td>';
+                                echo '<td style="vertical-align: middle;"><button class="btn btn-primary form-btn" style="margin: auto" name="btnEdit" type="submit" value="'.$row[0].'"  >Change Info</button></td>';
                             }
                             echo '</table>';
                         } catch (PDOException $th) {
@@ -89,7 +110,7 @@ session_start(); ?>
                         $booking=$_SESSION["u_uid"];
                         $conn = new PDO($db, $un, $password);
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $query = "SELECT `BID`,packages.Name,`Status` FROM bookings  JOIN packages ON Package=packages.ID WHERE bookings.Name=$booking and `Status`!=1 ORDER BY `Status` ASC";
+                        $query = "SELECT `BID`,packages.Name,`Status` FROM bookings  JOIN packages ON Package=packages.ID WHERE bookings.Name=$booking ORDER BY `Status` DESC";
                         $result = $conn->query($query);
                         echo '<h3 style="text-align: center;">My Bookings</h3>';
                         echo '<table class="table" style="border:solid #dee2e6 1px;">';
@@ -100,27 +121,30 @@ session_start(); ?>
                             <th scope="col">Status</th>
                             <th scope="col"></th>
                             <th scope="col"></th>
+                            
 
                           </tr>';
                         foreach($result as $row)
                         {
                            if ($row[2]==0){
                                $Status="Pending";
+                               $iconColor ="#B49900";
                            }
                            elseif ($row[2]==1){
                                $Status="Removed";
+                               $iconColor ="red";
                            }
                            elseif($row[2]==2){
                                $Status="Confirmed";
+                               $iconColor ="green";
                            }
 
                             echo '<tbody>';
                             echo '<tr class="rw">';
-                            echo '<td style="vertical-align: middle;"> <input type="hidden" name="pID[]" value="' . $row[1] . '">'. $row[1] . '</td>';
-                            echo '<td style="vertical-align: middle;"> <input type="hidden" name="pID[]" value="' . $row[2] . '">'. $Status . '</td>';
+                            echo '<td style="vertical-align: middle;"> <input type="hidden" >'. $row[1] . '</td>';
+                            echo '<td style="vertical-align: middle;"> <input type="hidden" > <i class="fas fa-circle" style="color:'.$iconColor.'"></i></td>';
                             echo '<td style="vertical-align: middle;"><button class="btn btn-primary form-btn" style="margin: auto" name="btnView" type="submit" value="'.$row[0].'"  >View</button></td>';
                             echo '<td style="vertical-align: middle;"><button class="btn btn-primary form-btn" style="margin: auto" name="btnCan" type="submit" value="'.$row[0].'"  >Cancel Booking</button></td>';
-
                             echo '</tr>';
                             echo ' </tbody>';
                         }

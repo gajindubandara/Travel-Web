@@ -1,4 +1,5 @@
 <?php
+require("login-check/login-check-admin.php");
 include("config.php");?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +14,7 @@ include("config.php");?>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </head>
 <body>
-<?php include 'nav&footer/nav.php' ?>
+<?php include 'nav&footer/adminNav.php' ?>
 <div class="main-container ">
     <form method="post" style="margin-top: 30px">
         <div class="container">

@@ -1,4 +1,5 @@
 <?php
+require("login-check/login-check-user.php");
 include("config.php");
 session_start();
 ?><!DOCTYPE html>

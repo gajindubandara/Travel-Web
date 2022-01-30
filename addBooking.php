@@ -1,4 +1,5 @@
 <?php
+require("login-check/login-check-user.php");
 include("config.php");?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,7 +57,11 @@ include("config.php");?>
                         <input type="date" class="form-control" name="bDate" required>
                     </div>
                     <div class="form-group">
-                    Food:
+                        Number of Passengers:
+                        <input type="number" class="form-control" name="No" required>
+                    </div>
+                    <div class="form-group">
+                    Description:
                     <textarea class="form-control" name="des" cols="30" rows="5" placeholder="If there is any message for us please type here!"></textarea>
                 </div>
 
@@ -70,18 +75,38 @@ include("config.php");?>
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['btnAdd'])) {
         try {
+            try {
+                $bid=$_POST["pack"];
+                $conn = new PDO($db,$un,$password);
+                $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+                $query ="SELECT `Price` FROM `packages` WHERE `ID`=$bid";
+                $result = $conn->query($query);
+                foreach($result as $price)
+                {
+                    $stringPrice=$price[0];
+                }
+            }
+            catch(PDOException $ex)
+            {
+                echo $ex->getMessage();
+            }
+
+            $intPrice=(int)$stringPrice;
+            $num =$_POST["No"];
+            $totalInt=$intPrice*$num;
             $conn = new PDO($db, $un, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $query = "INSERT INTO `bookings`( `Name`, `Package`, `Start`, `End`, `BDay`, `Des`) 
-                 VALUES (?,?,?,?,?,?)";
-
+            $query = "INSERT INTO `bookings`( `Name`, `Package`, `Start`, `End`, `BDay`,`No`, `Des`,`Total`) 
+                 VALUES (?,?,?,?,?,?,?,?)";
             $st = $conn->prepare($query);
             $st->bindValue(1, $_SESSION["u_uid"], PDO::PARAM_STR);
             $st->bindValue(2, $_POST["pack"], PDO::PARAM_STR);
             $st->bindValue(3, $_POST["sDate"], PDO::PARAM_STR);
             $st->bindValue(4, $_POST["eDate"], PDO::PARAM_STR);
             $st->bindValue(5, $_POST["bDate"], PDO::PARAM_STR);
-            $st->bindValue(6, $_POST["des"], PDO::PARAM_STR);
+            $st->bindValue(6, $_POST["No"], PDO::PARAM_INT);
+            $st->bindValue(7, $_POST["des"], PDO::PARAM_STR);
+            $st->bindValue(8, $totalInt, PDO::PARAM_INT);
             $st->execute();
 
             echo "<script> alert('Booking successful!');</script>";

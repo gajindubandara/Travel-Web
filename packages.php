@@ -1,5 +1,6 @@
 <?php
-include("config.php");?>
+include("config.php");
+session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +21,8 @@ include("config.php");?>
 <div class="main-container" style="padding-top: 30px">
 
     <div class="col-md-12">
-        <h1 style="text-align: center;">Our packages......</h1>
+        <h1 style="text-align: center; margin-bottom: 50px; ">Our packages......</h1>
+        <button class="btn btn-primary btn-lg form-btn" style="margin-bottom: 20px" name="btnBook" type="submit" onclick="loadPage()">Book Now!</button>
         <div class="row justify-content-md-center ">
 
             <?php
@@ -44,11 +46,8 @@ include("config.php");?>
                     echo '<br>';
                     echo ' <li><b>Transport Method:</b> ' . $row[6] . '</li>';
                     echo '<br>';
-                    echo '<h4 > Rs.' . $row[7] . '/=</h4><p> Per Person</p>';
+                    echo '<h4 > Rs.' . $row[7] . '.00/=</h4><p> Per Person</p>';
                     echo '</ul></p>';
-                    echo ' <form method="post">';
-                    echo ' <input type="submit" class="btn btn-primary form-btn" value="Book Now!" name="btnBook" ">';
-                    echo ' </form>';
                     echo '</div>';
                     echo ' </div>';
 
@@ -59,99 +58,31 @@ include("config.php");?>
                 echo $th->getMessage();
 
             }
-
-
             ?>
 
-<!--            <div class="card card-style" style="width: 500px">-->
-<!--                <h3 class="card-title">Yaala safari</h3>-->
-<!--                <img class="card-img-top card-img" src="images/waterfalls.jpg" alt="Card image cap">-->
-<!--                <div class="card-body">-->
-<!--                    <p class="card-text">-->
-<!---->
-<!--                        Some quick example text to build on the card title and make up the bulk of the-->
-<!--                        card's content.-->
-<!--                    <ul style="list-style-type: none;">-->
-<!--                        <li><b>Accommodation:</b> We will provide you with the best accommodation facility nearby</li>-->
-<!--                    <li><b>Food:</b> Food can be arrange according to you need</li>-->
-<!---->
-<!--                    </ul></p>-->
-<!--                    <form method="post">-->
-<!--                        <input type="submit" class="btn btn-primary form-btn" value="Book" name="btnBook" ">-->
-<!--                    </form>-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--            <div class="card card-style" style="width: 500px">-->
-<!--                <h3 class="card-title">Piduruthalagla Hiking Adventure</h3>-->
-<!--                <img class="card-img-top card-img" src="images/istockphoto-452121629-612x612.jpg" alt="Card image cap">-->
-<!--                <div class="card-body">-->
-<!--                    <p class="card-text">-->
-<!---->
-<!--                        Some quick example text to build on the card title and make up the bulk of the-->
-<!--                        card's content.-->
-<!--                    <ul style="list-style-type: none;">-->
-<!--                        <li><b>Accommodation:</b> We will provide you with the best accommodation facility nearby</li>-->
-<!--                        <li><b>Food:</b> Food can be arrange according to you need</li>-->
-<!---->
-<!--                    </ul></p>-->
-<!--                    <form method="post">-->
-<!--                        <input type="submit" class="btn btn-primary form-btn" value="Book" name="btnBook" ">-->
-<!--                    </form>-->
-<!--                </div>-->
-<!--            </div>-->
-
-        </div>
-<!--        <div class="row justify-content-md-center ">-->
-<!---->
-<!--            <div class="card card-style" style="width: 500px">-->
-<!--                <h3 class="card-title">Sinharaja rain forest</h3>-->
-<!--                <img class="card-img-top card-img" src="images/waterfalls.jpg" alt="Card image cap">-->
-<!--                <div class="card-body">-->
-<!--                    <p class="card-text">-->
-<!---->
-<!--                        Some quick example text to build on the card title and make up the bulk of the-->
-<!--                        card's content.-->
-<!--                    <ul style="list-style-type: none;">-->
-<!--                        <li><b>Accommodation:</b> We will provide you with the best accommodation facility nearby</li>-->
-<!--                        <li><b>Food:</b> Food can be arrange according to you need</li>-->
-<!---->
-<!--                    </ul></p>-->
-<!--                    <form method="post">-->
-<!--                        <input type="submit" class="btn btn-primary form-btn" value="Book" name="btnBook" ">-->
-<!--                    </form>-->
-<!--                </div>-->
-<!--            </div>-->
-<!---->
-<!--            <div class="card card-style" style="width: 500px">-->
-<!--                <h3 class="card-title">Pilgrimage tour around Anuradhapura </h3>-->
-<!--                <img class="card-img-top card-img" src="images/waterfalls.jpg" alt="Card image cap">-->
-<!--                <div class="card-body">-->
-<!--                    <p class="card-text">-->
-<!---->
-<!--                        Some quick example text to build on the card title and make up the bulk of the-->
-<!--                        card's content.-->
-<!--                    <ul style="list-style-type: none;">-->
-<!--                        <li><b>Accommodation:</b> We will provide you with the best accommodation facility nearby</li>-->
-<!--                        <li><b>Food:</b> Food can be arrange according to you need</li>-->
-<!---->
-<!--                    </ul></p>-->
-<!--                    <form method="post">-->
-<!--                        <input type="submit" class="btn btn-primary form-btn" value="Book" name="btnBook" ">-->
-<!--                    </form>-->
-<!--                </div>-->
-<!--            </div>-->
-<!---->
-<!--        </div>-->
-        <h1 style="text-align: center; padding-top: 30px">More packages are comming soon! Stay tuned......</h1>
     </div>
 
 
 </div>
 
+</div>
+<div class="main-container ">
+
+    <div class="col-md-12">
+        <div class="row justify-content-md-center ">
+            <h1 style="text-align: center; padding-top: 30px">More packages are comming soon! Stay tuned......</h1>
+
+        </div>
+    </div>
 
 
+</div>
 <?php include 'nav&footer/footer.php' ?>
+<script>
+    function loadPage() {
+        window.location.href='addBooking.php'
+    }
+</script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

@@ -19,69 +19,51 @@ session_start();
     </button>
     <div class="collapse navbar-collapse" id="main-navigation">
         <ul class="navbar-nav" id="nav">
+
+
 <!--            temp nav links-->
             <li class="nav-item">
                 <a class="nav-link" href="index.php">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="viewusers.php">users</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="addpack.php">add
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="allbookings.php">AB
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="addBooking.php">BN
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="register.php">Register</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="login.php">Login</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="packages.php">Packages</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="packagelist.php">pli</a>
-            </li>
-
 
 
             <?php
-            if(isset($_SESSION["u_un"])){
+            if (isset($_SESSION["u_un"])) {
 
-            echo '
+
+                echo '
             <li class="nav-item">
                 <a class="nav-link" href="mybookings.php">mybookings</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="myprofile.php">'.$_SESSION["u_un"].'</a>
+                <a class="nav-link" href="myprofile.php"> <i class="fas fa-user-alt"></i>  ' . $_SESSION["u_un"] . '</a>
             </li> 
             </li>
+
             <li class="nav-item">
                 <form method="post">
                     <button class="logout" type="submit" name="logout">Logout <i class="fas fa-sign-out-alt" style="color:white"></i></button>
-
                 </form>
-
-               
             </li> ';
 
 
+            } else {
+
+                echo '   <li class="nav-item">
+                <a class="nav-link" href="register.php">Register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="login.php">Login</a>
+            </li>';
 
             }
-
-
             if (isset($_POST["logout"])) {
                 unset($_SESSION["u_un"]);
                 unset($_SESSION["u_uid"]);
-                header("location:login.php");
+                header("location:index.php");
             }
             ?>
 
