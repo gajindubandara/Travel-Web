@@ -6,7 +6,7 @@ session_start();?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Title</title>
+    <title>Packages</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -30,14 +30,14 @@ session_start();?>
             try {
                 $conn = new PDO($db, $un, $password);
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $query ="SELECT  `ID`,`Name`, `Img`, `Des`, `Acc`, `Food`, `Transport`, `Price` FROM `packages`";
+                $query ="SELECT  `ID`,`Name`, `Img`, `Des`, `Acc`, `Food`, `Transport`,`Time`, `Price` FROM `packages`";
                 $result = $conn->query($query);
                 foreach ($result as $row) {
                     echo '<div class="card card-style" style="width: 500px">';
                     echo '<h3 class="card-title">' . $row[1] . '</h3>';
-                    echo ' <img class="card-img-top card-img" src="images/waterfalls.jpg" alt="Card image cap">';
+                    echo ' <img class="card-img-top card-img" src="'.$row[2].'" alt="Card image cap">';
                     echo '<div class="card-body">';
-                    echo '<h4 >' . $row[3] . '</h4>';
+                    echo '<h5 style="text-align: center">' . $row[3] . '</h5>';
                     echo '<br>';
                     echo '  <ul style="list-style-type: none;">';
                     echo '<li><b>Accommodation:</b> ' . $row[4] . '</li>';
@@ -46,7 +46,9 @@ session_start();?>
                     echo '<br>';
                     echo ' <li><b>Transport Method:</b> ' . $row[6] . '</li>';
                     echo '<br>';
-                    echo '<h4 > Rs.' . $row[7] . '.00/=</h4><p> Per Person</p>';
+                    echo ' <li><b> ' . $row[7] . '</b></li>';
+                    echo '<br>';
+                    echo '<h4 > Rs.' . $row[8] . '.00/=</h4><p> Per Person</p>';
                     echo '</ul></p>';
                     echo '</div>';
                     echo ' </div>';

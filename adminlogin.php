@@ -17,27 +17,48 @@ session_start();?>
 <?php include 'nav&footer/adminNav.php' ?>
 
 <div class="main-container ">
+<!--    <form method="post" style="margin-top: 30px">-->
+<!--        <div class="container">-->
+<!--            <div class="row justify-content-md-center ">-->
+<!--                <div class="col-md-8 ">-->
+<!--                    <h3 style="text-align: center;">Login as a Admin</h3>-->
+<!--                    <div class="form-group">-->
+<!--                        Username:-->
+<!--                        <input type="text" class="form-control" placeholder="Username" name="UN">-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        Password:-->
+<!--                        <input type="password" class="form-control" placeholder="Password" name="PW">-->
+<!--                    </div>-->
+<!--                    <input type="submit" class="btn btn-primary form-btn" value="Login" name="logUser">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </form>-->
+
     <form method="post" style="margin-top: 30px">
-        <div class="container">
-            <div class="row justify-content-md-center ">
-                <div class="col-md-8 ">
-                    <h3 style="text-align: center;">Login as a Admin</h3>
-                    <div class="form-group">
-                        Username:
-                        <input type="text" class="form-control" placeholder="Username" name="UN">
+        <div class="col-md-12">
+            <div class="row justify-content-md-center " style="margin-top: 50px">
+                <div class="card card-style" style="width: 500px">
+                    <h3 class="card-title">Login as a Admin</h3>
+                    <div class="card-body">
+                        <div class="form-group">
+                            Username:
+                            <input type="text" class="form-control" placeholder="Username" name="UN">
+                        </div>
+                        <div class="form-group">
+                            Password:
+                            <input type="password" class="form-control" placeholder="Password" name="PW">
+                        </div>
+                        <input type="submit" class="btn btn-primary form-btn" value="Login" name="logAdmin">
                     </div>
-                    <div class="form-group">
-                        Password:
-                        <input type="password" class="form-control" placeholder="Password" name="PW">
-                    </div>
-                    <input type="submit" class="btn btn-primary form-btn" value="Login" name="logUser">
                 </div>
             </div>
         </div>
     </form>
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (isset($_POST["logUser"])) {
+        if (isset($_POST["logAdmin"])) {
             try {
                 $conn = new PDO($db, $un, $password);
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

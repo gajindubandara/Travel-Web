@@ -6,7 +6,7 @@ include("config.php");?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Register</title>
+    <title>Edit Package</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -28,7 +28,7 @@ include("config.php");?>
                         $edit = $_SESSION["editpc"];
                         $conn = new PDO($db, $un, $password);
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $query = $query ="SELECT  `Name`, `Img`, `Des`, `Acc`, `Food`, `Transport`, `Price` FROM `packages` WHERE `ID`=$edit";
+                        $query = $query ="SELECT  `Name`, `Img`, `Des`, `Acc`, `Food`, `Transport`, `Price`,`Time` FROM `packages` WHERE `ID`=$edit";
                         $result = $conn->query($query);
                         foreach ($result as $row) {
                             echo '<div class="form-group">';
@@ -54,11 +54,15 @@ include("config.php");?>
                             echo '</div>';
                             echo ' <div class="form-group">';
                             echo ' Transport Method:';
-                            echo '   <input type="text" class="form-control" name="txtTrans" value="' . $row[5] . '" required>';
+                            echo '   <textarea class="form-control" name="txtTrans" cols="30" rows="5" required>' . $row[5] . '</textarea>';
                             echo ' </div>';
                             echo ' <div class="form-group">';
                             echo ' Price:';
-                            echo '    <input type="text" class="form-control" name="txtPrice" value="' . $row[6] . '" required>';
+                            echo '    <input type="number" class="form-control" name="txtPrice" value="' . $row[6] . '" required>';
+                            echo ' </div>';
+                            echo ' <div class="form-group">';
+                            echo ' Time Duration:';
+                            echo '    <input type="text" class="form-control" name="txtTime" value="' . $row[7] . '" required>';
                             echo ' </div>';
 
                             echo '<input type="submit" class="btn btn-primary form-btn" value="Update" name="btnUpdate">';
@@ -92,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             move_uploaded_file($_FILES["txtCover"]['name'],$newName) ;
             $conn = new PDO($db, $un, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $query = "UPDATE `packages` SET `Name`=?,`Des`=?,`Acc`=?,`Img`=?,`Food`=?,`Transport`=?,`Price`=? WHERE `ID`=$edit";
+            $query = "UPDATE `packages` SET `Name`=?,`Des`=?,`Acc`=?,`Img`=?,`Food`=?,`Transport`=?,`Price`=?,`Time`=? WHERE `ID`=$edit";
             $st = $conn->prepare($query);
             $st->bindValue(1,$_POST["txtTitle"],PDO::PARAM_STR);
             $st->bindValue(2,$_POST["txtDes"],PDO::PARAM_STR);
@@ -101,6 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $st->bindValue(5,$_POST["txtFood"],PDO::PARAM_STR);
             $st->bindValue(6,$_POST["txtTrans"],PDO::PARAM_STR);
             $st->bindValue(7,$_POST["txtPrice"],PDO::PARAM_STR);
+            $st->bindValue(8,$_POST["txtTime"],PDO::PARAM_STR);
             $st->execute();
             echo "<script> alert('Package updated Successfully!');</script>";
 

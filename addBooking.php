@@ -27,17 +27,14 @@ include("config.php");?>
                         <select class="form-control" name="pack" required>
                             <?php
                             try {
-                                $conn = new PDO($db,$un,$password);
-                                $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-                                $query ="SELECT `ID`, `Name` FROM `packages`";
+                                $conn = new PDO($db, $un, $password);
+                                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                $query = "SELECT `ID`, `Name` FROM `packages`";
                                 $result = $conn->query($query);
-                                foreach($result as $r)
-                                {
-                                    echo '<option value="'.$r[0].'">'.$r[1].'</option>';
+                                foreach ($result as $r) {
+                                    echo '<option value="' . $r[0] . '">' . $r[1] . '</option>';
                                 }
-                            }
-                            catch(PDOException $ex)
-                            {
+                            } catch (PDOException $ex) {
                                 echo $ex->getMessage();
                             }
 
@@ -45,27 +42,26 @@ include("config.php");?>
                         </select>
                     </div>
                     <div class="form-group">
-                        Start Date:
+                        Scheduled Date:
                         <input type="date" class="form-control" name="sDate" required>
-                    </div>
-                    <div class="form-group">
-                        End Date:
-                        <input type="date" class="form-control" name="eDate" required>
-                    </div>
-                    <div class="form-group">
-                        Booking Date:
-                        <input type="date" class="form-control" name="bDate" required>
                     </div>
                     <div class="form-group">
                         Number of Passengers:
                         <input type="number" class="form-control" name="No" required>
                     </div>
                     <div class="form-group">
-                    Description:
-                    <textarea class="form-control" name="des" cols="30" rows="5" placeholder="If there is any message for us please type here!"></textarea>
-                </div>
-
+                        Description:
+                        <textarea class="form-control" name="des" cols="30" rows="5"
+                                  placeholder="If there is any message for us please type here!"></textarea>
+                    </div>
+                    <div class="form-group">
+                        Booking Date:
+                        <?php $date = date("Y-m-d");
+                        echo $date;
+                        ?>
+                    </div>
                     <input type="submit" class="btn btn-primary form-btn" value="Create Booking !" name="btnAdd">
+
                 </div>
             </div>
         </div>
@@ -96,17 +92,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $totalInt=$intPrice*$num;
             $conn = new PDO($db, $un, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $query = "INSERT INTO `bookings`( `Name`, `Package`, `Start`, `End`, `BDay`,`No`, `Des`,`Total`) 
-                 VALUES (?,?,?,?,?,?,?,?)";
+            $query = "INSERT INTO `bookings`( `Name`, `Package`, `Start`, `BDay`,`No`, `Des`,`Total`) 
+                 VALUES (?,?,?,?,?,?,?)";
             $st = $conn->prepare($query);
             $st->bindValue(1, $_SESSION["u_uid"], PDO::PARAM_STR);
             $st->bindValue(2, $_POST["pack"], PDO::PARAM_STR);
             $st->bindValue(3, $_POST["sDate"], PDO::PARAM_STR);
-            $st->bindValue(4, $_POST["eDate"], PDO::PARAM_STR);
-            $st->bindValue(5, $_POST["bDate"], PDO::PARAM_STR);
-            $st->bindValue(6, $_POST["No"], PDO::PARAM_INT);
-            $st->bindValue(7, $_POST["des"], PDO::PARAM_STR);
-            $st->bindValue(8, $totalInt, PDO::PARAM_INT);
+            $st->bindValue(4, $date, PDO::PARAM_STR);
+            $st->bindValue(5, $_POST["No"], PDO::PARAM_INT);
+            $st->bindValue(6, $_POST["des"], PDO::PARAM_STR);
+            $st->bindValue(7, $totalInt, PDO::PARAM_INT);
             $st->execute();
 
             echo "<script> alert('Booking successful!');</script>";

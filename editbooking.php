@@ -28,20 +28,16 @@ include("config.php");?>
                         $edit = $_SESSION["editbc"];
                         $conn = new PDO($db, $un, $password);
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $query = $query ="SELECT   `Start`, `End`,`No`  FROM `bookings` WHERE `BID`=$edit";
+                        $query = $query ="SELECT   `Start`, `No`  FROM `bookings` WHERE `BID`=$edit";
                         $result = $conn->query($query);
                         foreach ($result as $row) {
                             echo '<div class="form-group">';
-                            echo 'Start Date:';
+                            echo 'Scheduled Date:';
                             echo '<input type="date" class="form-control" name="sDate" value="' . $row[0] . '" required>';
                             echo ' </div>';
                             echo '<div class="form-group">';
-                            echo 'End Date:';
-                            echo '<input type="date" class="form-control" name="eDate" value="' . $row[1] . '" required>';
-                            echo '</div>';
-                            echo '<div class="form-group">';
                             echo 'No of Passengers:';
-                            echo '<input type="number" class="form-control" name="No" value="' . $row[2] . '" required>';
+                            echo '<input type="number" class="form-control" name="No" value="' . $row[1] . '" required>';
                             echo '</div>';
                             echo '<input type="submit" class="btn btn-primary form-btn" value="Update" name="btnUpdate">';
                             echo '<input type="submit" class="btn btn-primary form-btn" value="Cancel" name="btnCan">';
@@ -110,13 +106,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $totalInt=$intPrice*$num;
             $conn = new PDO($db, $un, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $query = "UPDATE `bookings` SET `Start`=?,`End`=?,`Status`=?,`No`=?,`Total`=? WHERE `BID`=$edit";
+            $query = "UPDATE `bookings` SET `Start`=?,`Status`=?,`No`=?,`Total`=? WHERE `BID`=$edit";
             $st = $conn->prepare($query);
             $st->bindValue(1,$_POST["sDate"],PDO::PARAM_STR);
-            $st->bindValue(2,$_POST["eDate"],PDO::PARAM_STR);
-            $st->bindValue(3,$status,PDO::PARAM_STR);
-            $st->bindValue(4,$_POST["No"],PDO::PARAM_INT);
-            $st->bindValue(5,$totalInt,PDO::PARAM_INT);
+            $st->bindValue(2,$status,PDO::PARAM_STR);
+            $st->bindValue(3,$_POST["No"],PDO::PARAM_INT);
+            $st->bindValue(4,$totalInt,PDO::PARAM_INT);
             $st->execute();
 
 

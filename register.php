@@ -43,15 +43,21 @@ include("config.php");?>
                     </div>
                     <div class="form-group">
                         Create a new password:
-                        <input type="text" class="form-control" name="addPW" required>
+                        <input type="password" class="form-control" name="addPW" required>
                         <?php
                         $md5pw =md5($_POST["addPW"]);
 
                         ?>
                     </div>
                     <div class="form-group">
+                        Reenter the password:
+                        <input type="password" class="form-control" name="addRPW" required>
+                    </div>
+                    <div class="form-group">
                         Date:
-                        <input type="date" class="form-control" name="addDate" required>
+                        <?php $date = date("Y-m-d");
+                        echo $date;
+                        ?>
                     </div>
                     <input type="submit" class="btn btn-primary form-btn" value="Create account" name="btnAdd">
                 </div>
@@ -59,31 +65,40 @@ include("config.php");?>
         </div>
     </form>
 </div>
+
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
     if (isset($_POST['btnAdd'])) {
-        try {
-            $conn = new PDO($db, $un, $password);
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $query = "INSERT INTO `users`( `Name`, `No`, `Email`,`Address`, `Username`, `Password`, `Day`) 
+        if ($_POST["addPW"] == $_POST["addRPW"]){
+            try {
+                $conn = new PDO($db, $un, $password);
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $query = "INSERT INTO `users`( `Name`, `No`, `Email`,`Address`, `Username`, `Password`, `Day`) 
                 VALUES (?,?,?,?,?,?,?)";
-            $st = $conn->prepare($query);
-            $st->bindValue(1, $_POST["addName"], PDO::PARAM_STR);
-            $st->bindValue(2, $_POST["addNum"], PDO::PARAM_STR);
-            $st->bindValue(3, $_POST["addEmail"], PDO::PARAM_STR);
-            $st->bindValue(4, $_POST["addAddress"], PDO::PARAM_STR);
-            $st->bindValue(5, $_POST["addUN"], PDO::PARAM_STR);
-            $st->bindValue(6, $md5pw, PDO::PARAM_STR);
-            $st->bindValue(7, $_POST["addDate"], PDO::PARAM_STR);
-            $st->execute();
+                $st = $conn->prepare($query);
+                $st->bindValue(1, $_POST["addName"], PDO::PARAM_STR);
+                $st->bindValue(2, $_POST["addNum"], PDO::PARAM_STR);
+                $st->bindValue(3, $_POST["addEmail"], PDO::PARAM_STR);
+                $st->bindValue(4, $_POST["addAddress"], PDO::PARAM_STR);
+                $st->bindValue(5, $_POST["addUN"], PDO::PARAM_STR);
+                $st->bindValue(6, $md5pw, PDO::PARAM_STR);
+                $st->bindValue(7, $date, PDO::PARAM_STR);
+                $st->execute();
 
-            echo "<script> alert('Registration successful!');</script>";
+                echo "<script> alert('Registration successful!');</script>";
 
 
-        } catch (PDOException $th) {
-            echo $th->getMessage();
+            } catch (PDOException $th) {
+                echo $th->getMessage();
 
+            }
+
+        }else{
+            echo "<script> alert('The reentered password dose not match to the new password! ');</script>";
         }
+
+
     }
 }
 ?>

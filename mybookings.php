@@ -31,23 +31,27 @@ session_start(); ?>
                             $bid = $_POST["btnView"];
                             $conn = new PDO($db, $un, $password);
                             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                            $query =  "SELECT `BID`,packages.Name,`Start`, `End`, `BDay`, bookings.Des, `Status`,`No`,`Total` FROM bookings  JOIN packages ON Package=packages.ID WHERE bookings.BID=$bid;";
+                            $query =  "SELECT `BID`,packages.Name,`Start`, `BDay`, bookings.Des, `Status`,`No`,`Total` FROM bookings  JOIN packages ON Package=packages.ID WHERE bookings.BID=$bid;";
                             $result = $conn->query($query);
                             echo '<h3 style="text-align: center;">Tour Information</h3>';
                             echo '<table class="table" style="margin-top: 50px">';
 
                             foreach ($result as $row) {
-                                if ($row[6]==0){
+                                if ($row[5]==0){
                                     $Status="Pending";
-                                    $iconColor ="#B49900";
+                                    $iconColor ="#FFD500";
                                 }
-                                elseif ($row[6]==1){
-                                    $Status="Removed";
+                                elseif ($row[5]==1){
+                                    $Status="Declined by Dream Tours";
                                     $iconColor ="red";
                                 }
-                                elseif($row[6]==2){
+                                elseif($row[5]==2){
                                     $Status="Confirmed";
                                     $iconColor ="green";
+                                }
+                                elseif($row[5]==3){
+                                    $Status="Canceled by user";
+                                    $iconColor ="#FF7000";
                                 }
                                 echo '<tbody>';
                                 echo '<tr>';
@@ -55,24 +59,20 @@ session_start(); ?>
                                 echo '<td>' . $row[1] . '</td>';
                                 echo '</tr>';
                                 echo '<tr>';
-                                echo '<td><b>Starting Date:</b></td>';
+                                echo '<td><b>Scheduled Date:</b></td>';
                                 echo '<td>' . $row[2] . '</td>';
-                                echo '</tr>';
+                                echo '</tr>';;
                                 echo '<tr>';
-                                echo '<td><b>Ending Date:</b></td>';
+                                echo '<td><b>Booked Date: </b></td>';
                                 echo '<td>' . $row[3] . '</td>';
                                 echo '</tr>';
                                 echo '<tr>';
-                                echo '<td><b>Booked Date: </b></td>';
-                                echo '<td>' . $row[4] . '</td>';
-                                echo '</tr>';
-                                echo '<tr>';
                                 echo '<td><b>No of Passengers:</b></td>';
-                                echo '<td>' . $row[7] . '</td>';
+                                echo '<td>' . $row[6] . '</td>';
                                 echo '</tr>';
                                 echo '<tr>';
                                 echo '<td><b>Total Amount:</b></td>';
-                                echo '<td>Rs.' . $row[8] . '.00/=</td>';
+                                echo '<td>Rs.' . $row[7] . '.00/=</td>';
                                 echo '</tr>';
                                 echo '<tr>';
                                 echo '<td><b>Status:</b></td>';
@@ -128,16 +128,21 @@ session_start(); ?>
                         {
                            if ($row[2]==0){
                                $Status="Pending";
-                               $iconColor ="#B49900";
+                               $iconColor ="#FFD500";
                            }
                            elseif ($row[2]==1){
-                               $Status="Removed";
+                               $Status="Declined by Dream Tours";
                                $iconColor ="red";
                            }
                            elseif($row[2]==2){
                                $Status="Confirmed";
                                $iconColor ="green";
                            }
+                           elseif($row[2]==3){
+                               $Status="Canceled by user";
+                               $iconColor ="#FF7000";
+                           }
+
 
                             echo '<tbody>';
                             echo '<tr class="rw">';
@@ -164,7 +169,7 @@ session_start(); ?>
 
     if (isset($_POST['btnCan'])) {
         try {
-            $upStat=1;
+            $upStat=3;
             $rmv =$_POST['btnCan'];
             $conn = new PDO($db, $un, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

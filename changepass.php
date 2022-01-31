@@ -16,7 +16,6 @@ session_start();
 </head>
 <body>
 <?php include 'nav&footer/nav.php' ?>
-
 <div class="main-container ">
     <form method="post" style="margin-top: 30px">
         <div class="container">
@@ -34,6 +33,7 @@ session_start();
                             <input type="password" class="form-control"  name="pRNPW" required>
                         </div>
                         <input type="submit" class="btn btn-primary form-btn" value="Change Password" name="btnChange">
+                        <input type="button" class="btn btn-primary form-btn" value="Cancel" name="btnCan" onclick="changePage()">
                     </form>
                 </div>
             </div>
@@ -76,6 +76,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } catch (PDOException $th) {
             echo $th->getMessage();
         }
+    }elseif (isset($_POST['btnCan'])) {
+        echo "<script>window.location.href='myprofile.php';</script>";
     }
 }
 ?>
@@ -84,6 +86,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <img src="images/bg.jpg" class="img-bg">
 <?php include 'nav&footer/footer.php' ?>
+<script>function changePage() {
+        window.location.href = 'myprofile.php'
+    }</script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

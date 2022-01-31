@@ -85,7 +85,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $st->bindValue(4, $_POST["Address"], PDO::PARAM_STR);
             $st->execute();
 
-//            echo "<script> alert('Profile updated Successfully!');</script>";
             echo "<script>window.location.href='myprofile.php';</script>";
 
 
@@ -93,16 +92,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo $th->getMessage();
 
         }
-    }
-}
-?>
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['btnCan'])) {
+    } elseif (isset($_POST['btnCan'])) {
         echo "<script>window.location.href='myprofile.php';</script>";
     }
 }
 ?>
+
 
 <img src="images/bg.jpg" class="img-bg">
 <?php include 'nav&footer/footer.php' ?>

@@ -6,7 +6,7 @@ include("config.php");?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Register</title>
+    <title>New Package</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -24,7 +24,7 @@ include("config.php");?>
                 <form method="post" enctype="multipart/form-data" >
                     <div class="form-group">
                         Package Name:
-                        <input type="text" class="form-control" name="txtTitle" required>
+                        <input type="text" class="form-control" name="txtTitle" placeholder="Tour name" required>
                     </div>
                     <div class="form-group">
                         Cover Image:
@@ -33,23 +33,27 @@ include("config.php");?>
                     </div>
                     <div class="form-group">
                         Description:
-                        <textarea class="form-control" name="txtDes" cols="30" rows="5" required></textarea>
+                        <textarea class="form-control" name="txtDes" cols="30" rows="5" placeholder="Brief description about the tour " required></textarea>
                     </div>
                     <div class="form-group">
                         Accommodation:
-                        <textarea class="form-control" name="txtAcc" cols="30" rows="5" required></textarea>
+                        <textarea class="form-control" name="txtAcc" cols="30" rows="5" placeholder="Ex-City Hotel" required></textarea>
                     </div>
                     <div class="form-group">
                         Food:
-                        <textarea class="form-control" name="txtFood" cols="30" rows="5" required></textarea>
+                        <textarea class="form-control" name="txtFood" cols="30" rows="5" placeholder="Ex-Buffet" required></textarea>
                     </div>
                     <div class="form-group">
                         Transport Method:
-                        <input type="text" class="form-control" name="txtTrans" required>
+                        <textarea class="form-control" name="txtTrans" cols="30" rows="5" placeholder="Ex-Tourist Bus" required></textarea>
                     </div>
                     <div class="form-group">
                         Price:
-                        <input type="text" class="form-control" name="txtPrice" required>
+                        <input type="number" class="form-control" name="txtPrice" placeholder="Ex-1000" required>
+                    </div>
+                    <div class="form-group">
+                        Time Duration:
+                        <input type="text" class="form-control" name="txtTime" placeholder="Ex- 2 Days 1 Night" required>
                     </div>
                     <input type="submit" class="btn btn-primary form-btn" name="btnSave" value="Add Package">
                 </form>
@@ -65,7 +69,7 @@ if(isset($_POST["btnSave"]))
     try {
         $conn = new PDO($db,$un,$password);
         $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-        $query = "INSERT INTO `packages`( `Name`, `Des`, `Acc`,`Img`, `Food`, `Transport`, `Price`) VALUES (?,?,?,?,?,?,?)";
+        $query = "INSERT INTO `packages`( `Name`, `Des`, `Acc`,`Img`, `Food`, `Transport`, `Price`,`Time`) VALUES (?,?,?,?,?,?,?,?)";
         $st = $conn->prepare($query);
         $st->bindValue(1,$_POST["txtTitle"],PDO::PARAM_STR);
         $st->bindValue(2,$_POST["txtDes"],PDO::PARAM_STR);
@@ -74,12 +78,13 @@ if(isset($_POST["btnSave"]))
         $st->bindValue(5,$_POST["txtFood"],PDO::PARAM_STR);
         $st->bindValue(6,$_POST["txtTrans"],PDO::PARAM_STR);
         $st->bindValue(7,$_POST["txtPrice"],PDO::PARAM_STR);
+        $st->bindValue(8,$_POST["txtTime"],PDO::PARAM_STR);
         $st->execute();
         $id=$conn->lastInsertId(); // this will give the id of the last entry
         $fname = $_FILES["txtCover"]['name'];
         $info  = new SplFileInfo($fname);
         $newName= 'packageImages/'.$id.'.'.$info->getExtension();
-        move_uploaded_file($_FILES["txtCover"]['name'],$newName) ;
+        move_uploaded_file($_FILES["txtCover"]['tmp_name'],$newName) ;
         $query="UPDATE `packages` SET `Img`=? WHERE `ID`=?";
         $st = $conn->prepare($query);
         $st->bindValue(1,$newName,PDO::PARAM_STR);

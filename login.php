@@ -6,7 +6,7 @@ session_start();?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Register</title>
+    <title>Login</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -18,26 +18,37 @@ session_start();?>
 
 <div class="main-container ">
     <form method="post" style="margin-top: 30px">
-        <div class="container">
-            <div class="row justify-content-md-center ">
-                <div class="col-md-8 ">
-                    <h3 style="text-align: center;">Login to your account</h3>
-                    <div class="form-group">
-                        Username:
-                        <input type="text" class="form-control" placeholder="Username" name="U_UN">
+        <div class="col-md-12">
+            <div class="row justify-content-md-center " style="margin-top: 50px">
+                <div class="card card-style" style="width: 500px">
+                    <h3 class="card-title">Login to your account</h3>
+                    <div class="card-body">
+                        <div class="form-group">
+                            Username:
+                            <input type="text" class="form-control" placeholder="Username" name="U_UN">
+                        </div>
+                        <div class="form-group">
+                            Password:
+                            <input type="password" class="form-control" placeholder="Password" name="U_PW">
+                        </div>
+                        <input type="submit" class="btn btn-primary form-btn" value="Login" name="logUser">
                     </div>
-                    <div class="form-group">
-                        Password:
-                        <input type="password" class="form-control" placeholder="Password" name="U_PW">
-                    </div>
-                    <input type="submit" class="btn btn-primary form-btn" value="Login" name="logUser">
-                    <br>
-                    <br>
-                   <h5>If you don't have a account please create a new one....</h5>
                 </div>
             </div>
         </div>
     </form>
+
+
+        <div class="container">
+            <div class="row justify-content-md-center ">
+                <div class="col-md-6 ">
+                    <div style="margin: 0px 30px 0px 30px; text-align: center">
+                   <h5><a href="register.php">If you don't have a account please create a new one. Click Here!</a></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST["logUser"])) {
