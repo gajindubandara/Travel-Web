@@ -90,7 +90,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
             } catch (PDOException $th) {
-                echo $th->getMessage();
+//                echo $th->getMessage();
+                echo "<script> alert('That username is taken! Please try another one ');</script>";
 
             }
 

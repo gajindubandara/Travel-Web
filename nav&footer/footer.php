@@ -13,18 +13,18 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-12">
-        <h6 class="text-uppercase font-weight-bold">Dream Tour Sri Lanka</h6>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque interdum quam odio, quis placerat
-          ante luctus eu. Sed aliquet dolor id sapien rutrum, id vulputate quam iaculis.</p>
+        <h6 class="text-uppercase font-weight-bold">About Dream Tour Sri Lanka</h6>
+        <p>Dream tours aim to give a special experience to the local and foreign tourists who
+            are passionate about traveling around the island... </p>
 
       </div>
       <div class="col-lg-4 col-md-4 col-sm-12">
-        <h6 class="text-uppercase font-weight-bold">Contact</h6>
-          <uL>
-              <li>Gajindu Bandara  +94 76 678 6225</li>
-              <li>gajinukb@gmail.com</li>
-
-          </uL>
+        <h6 class="text-uppercase font-weight-bold">Contact Us !</h6>
+          <ul style="list-style: none;">
+              <li>Phone number - +94 76 678 6225</li>
+              <li>Email - dreamtours@gmail.com</li>
+              <li>Feel free to contact us!!!</li>
+          </ul>
 
 
       </div>

@@ -76,8 +76,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } catch (PDOException $th) {
             echo $th->getMessage();
         }
-    }elseif (isset($_POST['btnCan'])) {
-        echo "<script>window.location.href='myprofile.php';</script>";
     }
 }
 ?>

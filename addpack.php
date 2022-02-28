@@ -83,7 +83,7 @@ if(isset($_POST["btnSave"]))
         $id=$conn->lastInsertId(); // this will give the id of the last entry
         $fname = $_FILES["txtCover"]['name'];
         $info  = new SplFileInfo($fname);
-        $newName= 'packageImages/'.$id.'.'.$info->getExtension();
+        $newName= './packageImages/'.$id.'.'.$info->getExtension();
         move_uploaded_file($_FILES["txtCover"]['tmp_name'],$newName) ;
         $query="UPDATE `packages` SET `Img`=? WHERE `ID`=?";
         $st = $conn->prepare($query);

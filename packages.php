@@ -21,8 +21,23 @@ session_start();?>
 <div class="main-container" style="padding-top: 30px">
 
     <div class="col-md-12">
-        <h1 style="text-align: center; margin-bottom: 50px; ">Our packages......</h1>
-        <button class="btn btn-primary btn-lg form-btn" style="margin-bottom: 20px" name="btnBook" type="submit" onclick="loadPage()">Book Now!</button>
+        <form method="post" style=" margin-top: 20px; margin-bottom: 35px">
+            <div class="container">
+                <div class="row justify-content-md-center ">
+                    <div class="col-md-8 ">
+                        <h1 style="text-align: center;">Our Packages...</h1>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder=" Search by tour" name="pack">
+                        </div>
+                        <input type="submit" class="btn btn-primary form-btn" value="Search" name="find">
+                    </div>
+                </div>
+            </div>
+        </form>
+        <button class="btn btn-primary btn-lg form-btn book-btn" style="margin-bottom: 20px" name="btnBook" type="submit" onclick="loadPage()">Book Now!</button>
+
+
+
         <div class="row justify-content-md-center ">
 
             <?php
@@ -31,6 +46,9 @@ session_start();?>
                 $conn = new PDO($db, $un, $password);
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $query ="SELECT  `ID`,`Name`, `Img`, `Des`, `Acc`, `Food`, `Transport`,`Time`, `Price` FROM `packages`";
+                if (isset($_POST['find'])) {
+                    $query = $query . "where Name like'%" . $_POST["pack"] . "%'";
+                }
                 $result = $conn->query($query);
                 foreach ($result as $row) {
                     echo '<div class="card card-style" style="width: 500px">';

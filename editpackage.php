@@ -93,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $fname = $_FILES["txtCover"]['name'];
             $info  = new SplFileInfo($fname);
             $newName= 'packageImages/'.$edit.'.'.$info->getExtension();
-            move_uploaded_file($_FILES["txtCover"]['name'],$newName) ;
+            move_uploaded_file($_FILES["txtCover"]['tmp_name'],$newName) ;
             $conn = new PDO($db, $un, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $query = "UPDATE `packages` SET `Name`=?,`Des`=?,`Acc`=?,`Img`=?,`Food`=?,`Transport`=?,`Price`=?,`Time`=? WHERE `ID`=$edit";
