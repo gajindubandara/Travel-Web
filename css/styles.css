@@ -1,16 +1,18 @@
 .main-container {
     padding: 0px 10px 50px 10px;
 }
-.center{
+
+.center {
     justify-content: center;
 }
+
 /*--- navigation bar ---*/
 
 .navbar {
     background: #343434;
 }
 
-.nav-link{
+.nav-link {
     color: #fff;
     cursor: pointer;
 
@@ -33,18 +35,19 @@
 }
 
 
-
 .navbar-collapse {
     justify-content: flex-end;
 }
 
-.logout{
+.logout {
     border: white;
     background-color: #343434;
-    color: white;    padding: 8px;
+    color: white;
+    padding: 8px;
     margin-right: 16px;
     padding: 8px;
 }
+
 .logout:hover {
     color: white;
     border-radius: 6px;
@@ -59,43 +62,39 @@
     padding-top: 35px;
 }
 
-.footer-copyright {
-    color: #666;
-    padding-top: 20px;
-    padding-bottom: 30px;
-}
+/*--- cards ---*/
 
-.card-img{
+.card-img {
     padding: 10px;
     border-radius: 20px;
     size: auto;
 }
 
-.card-style{
+.card-style {
     box-shadow: 5px 5px 5px 5px #898a89;
     border-radius: 6px;
     margin: 30px;
 
 }
-.card-title{
+
+.card-title {
 
     margin-top: 22px;
     text-align: center;
 }
-.card-carousel{
-    padding: 0px 5px 0px 5px;
 
-}
+
 /*---  bg image ---*/
-.img-bg{
+.img-bg {
     height: 50%;
     width: 50%;
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
+
 /*---  form btns ---*/
-.form-btn{
+.form-btn {
 
     display: block;
     margin-left: auto;
@@ -107,10 +106,8 @@
 }
 
 /*!*---  book-btn ---*!*/
-.book-btn{
+.book-btn {
     width: 200px !important;
     height: 75px !important;
     border-radius: 15px !important;
 }
-
-/**/
