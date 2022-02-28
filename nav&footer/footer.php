@@ -14,7 +14,7 @@
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-12">
         <h6 class="text-uppercase font-weight-bold">About Dream Tour Sri Lanka</h6>
-        <p>Dream tours aim to give a special experience to the local and foreign tourists who
+        <p>Dream tours aim to give a special experience to the local and foreign travelers who
             are passionate about traveling around the island... </p>
 
       </div>

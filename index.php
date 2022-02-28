@@ -112,20 +112,30 @@
 
 
             <div class="card card-style" style="width: 500px">
-                <h3 class="card-title">Plains</h3>
-                <img class="card-img-top card-img" src="images/plains.jpg" alt="Card image cap">
+                <h3 class="card-title">Historical Places</h3>
+                <img class="card-img-top card-img" src="images/his.jpg" alt="Card image cap">
                 <div class="card-body">
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
+                    <p class="card-text">There are many places to visit in Sri Lanka that has a historical value such as Anuradhapura, Polonnaruwa and Sigiriya</p>
                 </div>
             </div>
 
             <div class="card card-style" style="width: 500px">
-                <h3 class="card-title">Mountains</h3>
-                <img class="card-img-top card-img" src="images/moun.jpg" alt="Card image cap">
+                <h3 class="card-title">Forts</h3>
+                <img class="card-img-top card-img" src="images/fort.jpg" alt="Card image cap">
                 <div class="card-body">
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
+                    <p class="card-text">The famous Dutch colonial forts in Sri Lanka are the best places to visit and enjoy</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="row justify-content-md-center ">
+
+
+            <div class="card card-style" style="width: 500px">
+                <h3 class="card-title">Coastal areas</h3>
+                <img class="card-img-top card-img" src="images/cos.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">Sri Lanka has attractive beaches such as Hikkaduwa, Unawatuna, Mirissa etc.</p>
                 </div>
             </div>
 
@@ -135,45 +145,7 @@
 
 </div>
 
-<!--<div class="main-container ">-->
-<!---->
-<!--    <div class="col-md-12">-->
-<!--        <h1 style="text-align: center;">Food and accommodation facilities for our customers...</h1>-->
-<!--        <div class="row justify-content-md-center ">-->
-<!--            <div class="card card-style" style="width: 500px">-->
-<!--                <h3 class="card-title">Food</h3>-->
-<!--                <img class="card-img-top card-img" src="images/waterfalls.jpg" alt="Card image cap">-->
-<!--                <div class="card-body">-->
-<!--                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the-->
-<!--                        card's content.</p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="card card-style" style="width: 500px">-->
-<!--                <h3 class="card-title">Accommodation</h3>-->
-<!--                <img class="card-img-top card-img" src="images/plains.jpg" alt="Card image cap">-->
-<!--                <div class="card-body">-->
-<!--                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the-->
-<!--                        card's content.</p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!---->
-<!--        </div>-->
-<!--    </div>-->
-<!---->
-<!---->
-<!--</div>-->
-<!--<div class="main-container ">-->
-<!---->
-<!--    <div class="col-md-12">-->
-<!--        <h1 style="text-align: center;">Transportation methods for our customers...</h1>-->
-<!--        <div class="row justify-content-md-center ">-->
-<!--            <h3>We have many transport methods available.It will be organized by our company according to your  </h3>-->
-<!---->
-<!--        </div>-->
-<!--    </div>-->
-<!---->
-<!---->
-<!--</div>-->
+
 
 <?php include 'nav&footer/footer.php' ?>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
