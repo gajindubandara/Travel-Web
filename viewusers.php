@@ -140,6 +140,16 @@ if (isset($_POST["Del"])) {
         $st = $conn->prepare($query);
         $st->bindValue(1, $_POST["Del"], PDO::PARAM_INT);
         $st->execute();
+    } catch (PDOException $th) {
+        echo $th->getMessage();
+    }
+    try {
+        $conn = new PDO($db, $un, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = "DELETE FROM `bookings` WHERE `Name`=?";
+        $st = $conn->prepare($query);
+        $st->bindValue(1, $_POST["Del"], PDO::PARAM_INT);
+        $st->execute();
         echo "<script> alert('User removed Successfully!');</script>";
     } catch (PDOException $th) {
         echo $th->getMessage();
