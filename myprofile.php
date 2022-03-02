@@ -16,26 +16,20 @@ session_start(); ?>
 </head>
 <body>
 <?php include 'nav&footer/nav.php' ?>
-
 <div class="main-container ">
     <form method="post" style="margin-top: 30px">
         <div class="container">
             <div class="row justify-content-md-center ">
                 <div class="col-md-8 ">
                     <h3 style="text-align: center;">My profile</h3>
-
-
                     <?php
-
                     try {
                         $uname = $_SESSION["u_uid"];
                         $conn = new PDO($db, $un, $password);
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                         $query = "SELECT  `Name`, `No`, `Email`, `Username`,`Day`, `Address`,`UID` FROM `users` WHERE `UID`=$uname";
-
                         $result = $conn->query($query);
                         echo '<table class="table" style="margin-top: 50px">';
-
                         foreach ($result as $row) {
                             echo '<tbody>';
                             echo '<tr>';
@@ -62,9 +56,7 @@ session_start(); ?>
                             echo '<td><b>Registered date:</b></td>';
                             echo '<td>' . $row[4] . '</td>';
                             echo '</tr>';
-
                             echo ' </tbody>';
-
                         }
                         echo '</table>';
                         echo '<form method="post">';
@@ -73,10 +65,7 @@ session_start(); ?>
                         echo '</form>';
                     } catch (PDOException $th) {
                         echo $th->getMessage();
-
                     }
-
-
                     ?>
                     <?php
                     if (isset($_POST["btnEdit"])) {
@@ -88,14 +77,11 @@ session_start(); ?>
                         header("location:changepass.php");
                     }
                     ?>
-
                 </div>
             </div>
         </div>
     </form>
 </div>
-
-
 <img src="images/bg.jpg" class="img-bg">
 <?php include 'nav&footer/footer.php' ?>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

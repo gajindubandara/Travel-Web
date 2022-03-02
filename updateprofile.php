@@ -1,7 +1,7 @@
 <?php
 require("login-check/login-check-user.php");
 include("config.php");
-session_start();?>
+session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,51 +16,35 @@ session_start();?>
 </head>
 <body>
 <?php include 'nav&footer/nav.php' ?>
-
 <div class="main-container ">
     <form method="post" style="margin-top: 30px">
         <div class="container">
             <div class="row justify-content-md-center ">
                 <div class="col-md-8 ">
                     <h3 style="text-align: center;">Update Profile Information</h3>
-
                     <?php
-
                     try {
                         $edit = $_SESSION["editNo"];
                         $conn = new PDO($db, $un, $password);
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                         $query = $query = "SELECT  `Name`, `No`, `Email`, `Address` FROM `users` WHERE `UID`=$edit";
                         $result = $conn->query($query);
-
                         foreach ($result as $row) {
-
-
                             echo '  <div class="form-group"> Name:';
                             echo '<input type="text" class="form-control" name="Name" value="' . $row[0] . '" required >';
                             echo '</div>';
-
-
                             echo '  <div class="form-group"> Contact Number:';
                             echo '<input type="number" class="form-control" name="No" value="' . $row[1] . '" required >';
                             echo '</div>';
-
                             echo '  <div class="form-group"> Email:';
                             echo '<input type="email" class="form-control" name="Email" value="' . $row[2] . '" required >';
                             echo '</div>';
-
                             echo '  <div class="form-group"> Address:';
                             echo '<input type="text" class="form-control" name="Address" value="' . $row[3] . '" required >';
                             echo '</div>';
-
-
                             echo '<input type="submit" class="btn btn-primary form-btn" value="Update" name="btnUpdate">';
                             echo '<input type="submit" class="btn btn-primary form-btn" value="Cancel" name="btnCan">';
-
-
                         }
-
-
                     } catch (PDOException $th) {
                         echo $th->getMessage();
                     }
@@ -70,7 +54,6 @@ session_start();?>
         </div>
     </form>
 </div>
-
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['btnUpdate'])) {
@@ -84,21 +67,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $st->bindValue(3, $_POST["Email"], PDO::PARAM_STR);
             $st->bindValue(4, $_POST["Address"], PDO::PARAM_STR);
             $st->execute();
-
             echo "<script>window.location.href='myprofile.php';</script>";
-
-
         } catch (PDOException $th) {
             echo $th->getMessage();
-
         }
     } elseif (isset($_POST['btnCan'])) {
         echo "<script>window.location.href='myprofile.php';</script>";
     }
 }
 ?>
-
-
 <img src="images/bg.jpg" class="img-bg">
 <?php include 'nav&footer/footer.php' ?>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

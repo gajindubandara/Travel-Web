@@ -15,56 +15,57 @@ require("login-check/login-check-admin.php");
 </head>
 <body>
 <?php include 'nav&footer/adminNav.php' ?>
-
-
 <div class="main-container " style="margin-top: 60px">
     <h1 style="text-align: center;">Manage Packages</h1>
     <div class="row justify-content-md-center ">
-        <div class="col-md-6" >
-            <button type="button" style="margin-top: 20px" class="btn btn-primary btn-lg btn-block" onclick="addPackage()">Add New Packages</button>
-            <button type="button" style="margin-top: 20px" class="btn btn-primary btn-lg btn-block" onclick="viewPackage()">View Package List</button>
+        <div class="col-md-6">
+            <button type="button" style="margin-top: 20px" class="btn btn-primary btn-lg btn-block"
+                    onclick="addPackage()">Add New Packages
+            </button>
+            <button type="button" style="margin-top: 20px" class="btn btn-primary btn-lg btn-block"
+                    onclick="viewPackage()">View Package List
+            </button>
         </div>
     </div>
 </div>
 <div class="main-container " style="margin-top: 60px">
     <h1 style="text-align: center;">Manage Users</h1>
     <div class="row justify-content-md-center ">
-        <div class="col-md-6" >
-            <button type="button" style="margin-top: 20px" class="btn btn-primary btn-lg btn-block" onclick="viewUsers()">View Users</button>
+        <div class="col-md-6">
+            <button type="button" style="margin-top: 20px" class="btn btn-primary btn-lg btn-block"
+                    onclick="viewUsers()">View Users
+            </button>
         </div>
     </div>
 </div>
 <div class="main-container " style="margin-top: 60px">
     <h1 style="text-align: center;">Manage Bookings</h1>
     <div class="row justify-content-md-center ">
-        <div class="col-md-6" >
-            <button type="button" style="margin-top: 20px" class="btn btn-primary btn-lg btn-block" onclick="allBookings()">View All Bookings</button>
+        <div class="col-md-6">
+            <button type="button" style="margin-top: 20px" class="btn btn-primary btn-lg btn-block"
+                    onclick="allBookings()">View All Bookings
+            </button>
         </div>
     </div>
 </div>
-
 <?php include 'nav&footer/footer.php' ?>
 <script>
     function addPackage() {
-        window.location.href='addpack.php'
+        window.location.href = 'addpack.php'
     }
-</script>
-<script>
-    function viewPackage() {
-        window.location.href='packagelist.php'
-    }
-</script>
-<script>
-    function viewUsers() {
-        window.location.href='viewusers.php'
-    }
-</script>
-<script>
-    function allBookings() {
-        window.location.href='allbookings.php'
-    }
-</script>
 
+    function viewPackage() {
+        window.location.href = 'packagelist.php'
+    }
+
+    function viewUsers() {
+        window.location.href = 'viewusers.php'
+    }
+
+    function allBookings() {
+        window.location.href = 'allbookings.php'
+    }
+</script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

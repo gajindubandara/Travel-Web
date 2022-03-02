@@ -1,6 +1,6 @@
 <?php
 require("login-check/login-check-user.php");
-include("config.php");?>
+include("config.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +15,6 @@ include("config.php");?>
 </head>
 <body>
 <?php include 'nav&footer/nav.php' ?>
-
 <div class="main-container ">
     <form method="post" style="margin-top: 30px">
         <div class="container">
@@ -37,7 +36,6 @@ include("config.php");?>
                             } catch (PDOException $ex) {
                                 echo $ex->getMessage();
                             }
-
                             ?>
                         </select>
                     </div>
@@ -61,7 +59,6 @@ include("config.php");?>
                         ?>
                     </div>
                     <input type="submit" class="btn btn-primary form-btn" value="Create Booking !" name="btnAdd">
-
                 </div>
             </div>
         </div>
@@ -72,24 +69,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['btnAdd'])) {
         try {
             try {
-                $bid=$_POST["pack"];
-                $conn = new PDO($db,$un,$password);
-                $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-                $query ="SELECT `Price` FROM `packages` WHERE `ID`=$bid";
+                $bid = $_POST["pack"];
+                $conn = new PDO($db, $un, $password);
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $query = "SELECT `Price` FROM `packages` WHERE `ID`=$bid";
                 $result = $conn->query($query);
-                foreach($result as $price)
-                {
-                    $stringPrice=$price[0];
+                foreach ($result as $price) {
+                    $stringPrice = $price[0];
                 }
-            }
-            catch(PDOException $ex)
-            {
+            } catch (PDOException $ex) {
                 echo $ex->getMessage();
             }
-
-            $intPrice=(int)$stringPrice;
-            $num =$_POST["No"];
-            $totalInt=$intPrice*$num;
+            $intPrice = (int)$stringPrice;
+            $num = $_POST["No"];
+            $totalInt = $intPrice * $num;
             $conn = new PDO($db, $un, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $query = "INSERT INTO `bookings`( `Name`, `Package`, `Start`, `BDay`,`No`, `Des`,`Total`) 
@@ -103,20 +96,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $st->bindValue(6, $_POST["des"], PDO::PARAM_STR);
             $st->bindValue(7, $totalInt, PDO::PARAM_INT);
             $st->execute();
-
             echo "<script> alert('Booking successful!');</script>";
-
-
         } catch (PDOException $th) {
             echo $th->getMessage();
-
         }
     }
 }
 ?>
-
-
-
 <img src="images/bg.jpg" class="img-bg">
 <?php include 'nav&footer/footer.php' ?>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

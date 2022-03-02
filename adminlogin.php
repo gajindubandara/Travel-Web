@@ -1,6 +1,6 @@
 <?php
 include("config.php");
-session_start();?>
+session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,27 +15,7 @@ session_start();?>
 </head>
 <body>
 <?php include 'nav&footer/adminNav.php' ?>
-
 <div class="main-container ">
-<!--    <form method="post" style="margin-top: 30px">-->
-<!--        <div class="container">-->
-<!--            <div class="row justify-content-md-center ">-->
-<!--                <div class="col-md-8 ">-->
-<!--                    <h3 style="text-align: center;">Login as a Admin</h3>-->
-<!--                    <div class="form-group">-->
-<!--                        Username:-->
-<!--                        <input type="text" class="form-control" placeholder="Username" name="UN">-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        Password:-->
-<!--                        <input type="password" class="form-control" placeholder="Password" name="PW">-->
-<!--                    </div>-->
-<!--                    <input type="submit" class="btn btn-primary form-btn" value="Login" name="logUser">-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </form>-->
-
     <form method="post" style="margin-top: 30px">
         <div class="col-md-12">
             <div class="row justify-content-md-center " style="margin-top: 50px">
@@ -68,29 +48,19 @@ session_start();?>
                 $st->bindValue(2, $_POST["UN"], PDO::PARAM_STR);
                 $st->execute();
                 $result = $st->fetch();
-                if($result[0] == $_POST["UN"])
-                {
-//                    header("location:packages.php");
+                if ($result[0] == $_POST["UN"]) {
                     echo "<script>window.location.href='adminindex.php';</script>";
-                    $_SESSION["admin"] =$result[0];
-
-                }
-                else{
+                    $_SESSION["admin"] = $result[0];
+                } else {
                     echo '<script>alert("Incorrect user name or password")</script>';
                 }
-
             } catch (PDOException $th) {
                 echo $th->getMessage();
             }
         }
     }
     ?>
-
 </div>
-
-
-
-
 <img src="images/bg.jpg" class="img-bg">
 <?php include 'nav&footer/footer.php' ?>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

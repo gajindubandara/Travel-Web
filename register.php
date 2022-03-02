@@ -1,5 +1,5 @@
 <?php
-include("config.php");?>
+include("config.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +14,6 @@ include("config.php");?>
 </head>
 <body>
 <?php include 'nav&footer/nav.php' ?>
-
 <div class="main-container ">
     <form method="post" style="margin-top: 30px">
         <div class="container">
@@ -35,7 +34,7 @@ include("config.php");?>
                     </div>
                     <div class="form-group">
                         Address:
-                        <input type="text" class="form-control" name="addAddress"required>
+                        <input type="text" class="form-control" name="addAddress" required>
                     </div>
                     <div class="form-group">
                         Create a username:
@@ -45,8 +44,7 @@ include("config.php");?>
                         Create a new password:
                         <input type="password" class="form-control" name="addPW" required>
                         <?php
-                        $md5pw =md5($_POST["addPW"]);
-
+                        $md5pw = md5($_POST["addPW"]);
                         ?>
                     </div>
                     <div class="form-group">
@@ -65,12 +63,10 @@ include("config.php");?>
         </div>
     </form>
 </div>
-
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
     if (isset($_POST['btnAdd'])) {
-        if ($_POST["addPW"] == $_POST["addRPW"]){
+        if ($_POST["addPW"] == $_POST["addRPW"]) {
             try {
                 $conn = new PDO($db, $un, $password);
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -85,27 +81,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $st->bindValue(6, $md5pw, PDO::PARAM_STR);
                 $st->bindValue(7, $date, PDO::PARAM_STR);
                 $st->execute();
-
                 echo "<script> alert('Registration successful!');</script>";
-
-
             } catch (PDOException $th) {
-//                echo $th->getMessage();
                 echo "<script> alert('That username is taken! Please try another one ');</script>";
-
             }
-
-        }else{
+        } else {
             echo "<script> alert('The reentered password dose not match to the new password! ');</script>";
         }
-
-
     }
 }
 ?>
-
-
-
 <img src="images/bg.jpg" class="img-bg">
 <?php include 'nav&footer/footer.php' ?>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

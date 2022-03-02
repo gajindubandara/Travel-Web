@@ -1,6 +1,6 @@
 <?php
 require("login-check/login-check-user.php");
-include("config.php");?>
+include("config.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,20 +15,18 @@ include("config.php");?>
 </head>
 <body>
 <?php include 'nav&footer/nav.php' ?>
-
 <div class="main-container" style="margin-top: 30px">
-
     <div class="container">
         <div class="row justify-content-md-center ">
             <div class="col-md-8 ">
                 <h3 style="text-align: center;">Update Booking</h3>
-                <form method="post" enctype="multipart/form-data" >
+                <form method="post" enctype="multipart/form-data">
                     <?php
                     try {
                         $edit = $_SESSION["editbc"];
                         $conn = new PDO($db, $un, $password);
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $query = $query ="SELECT   `Start`, `No`  FROM `bookings` WHERE `BID`=$edit";
+                        $query ="SELECT   `Start`, `No`  FROM `bookings` WHERE `BID`=$edit";
                         $result = $conn->query($query);
                         foreach ($result as $row) {
                             echo '<div class="form-group">';
@@ -45,8 +43,6 @@ include("config.php");?>
                     } catch (PDOException $th) {
                         echo $th->getMessage();
                     }
-
-
                     ?>
                 </form>
             </div>
@@ -63,103 +59,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['btnUpdate'])) {
-        $status=0;
+        $status = 0;
         try {
-
-
             try {
-//                $bid=$_POST["pack"];
-                $conn = new PDO($db,$un,$password);
-                $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+                $conn = new PDO($db, $un, $password);
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $query = "SELECT  `Package`FROM `bookings` WHERE `BID`=$edit";
                 $result = $conn->query($query);
-                foreach($result as $row1)
-                {
-                    $pack=$row1[0];
+                foreach ($result as $row1) {
+                    $pack = $row1[0];
                 }
                 try {
-//                    $bid=$_POST["pack"];
-                    $conn = new PDO($db,$un,$password);
-                    $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-                    $query ="SELECT `Price` FROM `packages` WHERE `ID`=$pack";
+                    $conn = new PDO($db, $un, $password);
+                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    $query = "SELECT `Price` FROM `packages` WHERE `ID`=$pack";
                     $result = $conn->query($query);
-                    foreach($result as $price)
-                    {
-                        $stringPrice=$price[0];
+                    foreach ($result as $price) {
+                        $stringPrice = $price[0];
                     }
-
-
-                }
-                catch(PDOException $ex)
-                {
+                } catch (PDOException $ex) {
                     echo $ex->getMessage();
                 }
-
-            }
-            catch(PDOException $ex)
-            {
+            } catch (PDOException $ex) {
                 echo $ex->getMessage();
             }
-
-            $intPrice=(int)$stringPrice;
-            $num =$_POST["No"];
-            $totalInt=$intPrice*$num;
+            $intPrice = (int)$stringPrice;
+            $num = $_POST["No"];
+            $totalInt = $intPrice * $num;
             $conn = new PDO($db, $un, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $query = "UPDATE `bookings` SET `Start`=?,`Status`=?,`No`=?,`Total`=? WHERE `BID`=$edit";
             $st = $conn->prepare($query);
-            $st->bindValue(1,$_POST["sDate"],PDO::PARAM_STR);
-            $st->bindValue(2,$status,PDO::PARAM_STR);
-            $st->bindValue(3,$_POST["No"],PDO::PARAM_INT);
-            $st->bindValue(4,$totalInt,PDO::PARAM_INT);
+            $st->bindValue(1, $_POST["sDate"], PDO::PARAM_STR);
+            $st->bindValue(2, $status, PDO::PARAM_STR);
+            $st->bindValue(3, $_POST["No"], PDO::PARAM_INT);
+            $st->bindValue(4, $totalInt, PDO::PARAM_INT);
             $st->execute();
-
-
-
-
-
             echo "<script> alert('Booking updated Successfully!');</script>";
-
-
         } catch (PDOException $th) {
             echo $th->getMessage();
-
         }
     }
 }
 ?>
-<?php
-//if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//    if (isset($_POST['btnUpdate'])) {
-//        try {
-//            $test=abc;//remove this
-//            $conn = new PDO($db, $un, $password);
-//            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-//            $query = "UPDATE `packages` SET `Name`=?,`Img`=?,`Des`=?,`Acc`=?,`Food`=?,`Transport`=?,`Price`=? WHERE `ID`=$edit";
-//
-//            $st = $conn->prepare($query);
-//            $st->bindValue(1, $_POST["Name"], PDO::PARAM_STR);
-//            $st->bindValue(2, $test, PDO::PARAM_STR);
-//            $st->bindValue(3, $_POST["Des"], PDO::PARAM_STR);
-//            $st->bindValue(4, $_POST["Acc"], PDO::PARAM_STR);
-//            $st->bindValue(5, $_POST["Food"], PDO::PARAM_STR);
-//            $st->bindValue(6, $_POST["Trans"], PDO::PARAM_STR);
-//            $st->bindValue(7, $_POST["Price"], PDO::PARAM_STR);
-//            $st->execute();
-//
-//
-//            echo "<script> alert('Package updated Successfully!');</script>";
-//
-//
-//
-//        } catch (PDOException $th) {
-//            echo $th->getMessage();
-//
-//        }
-//    }
-//}
-//?>
-
 <img src="images/bg.jpg" class="img-bg">
 <?php include 'nav&footer/footer.php' ?>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

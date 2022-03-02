@@ -1,6 +1,6 @@
 <?php
 include("config.php");
-session_start();?>
+session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,11 +15,7 @@ session_start();?>
 </head>
 <body>
 <?php include 'nav&footer/nav.php' ?>
-
-
-
 <div class="main-container" style="padding-top: 30px">
-
     <div class="col-md-12">
         <form method="post" style=" margin-top: 20px; margin-bottom: 35px">
             <div class="container">
@@ -34,18 +30,15 @@ session_start();?>
                 </div>
             </div>
         </form>
-        <button class="btn btn-primary btn-lg form-btn book-btn" style="margin-bottom: 20px" name="btnBook" type="submit" onclick="loadPage()">Book Now!</button>
-
-
-
+        <button class="btn btn-primary btn-lg form-btn book-btn" style="margin-bottom: 20px" name="btnBook"
+                type="submit" onclick="loadPage()">Book Now!
+        </button>
         <div class="row justify-content-md-center ">
-
             <?php
-
             try {
                 $conn = new PDO($db, $un, $password);
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $query ="SELECT  `ID`,`Name`, `Img`, `Des`, `Acc`, `Food`, `Transport`,`Time`, `Price` FROM `packages`";
+                $query = "SELECT  `ID`,`Name`, `Img`, `Des`, `Acc`, `Food`, `Transport`,`Time`, `Price` FROM `packages`";
                 if (isset($_POST['find'])) {
                     $query = $query . "where Name like'%" . $_POST["pack"] . "%'";
                 }
@@ -53,7 +46,7 @@ session_start();?>
                 foreach ($result as $row) {
                     echo '<div class="card card-style" style="width: 500px">';
                     echo '<h3 class="card-title">' . $row[1] . '</h3>';
-                    echo ' <img class="card-img-top card-img" src="'.$row[2].'" alt="Card image cap">';
+                    echo ' <img class="card-img-top card-img" src="' . $row[2] . '" alt="Card image cap">';
                     echo '<div class="card-body">';
                     echo '<h5 style="text-align: center">' . $row[3] . '</h5>';
                     echo '<br>';
@@ -70,37 +63,25 @@ session_start();?>
                     echo '</ul></p>';
                     echo '</div>';
                     echo ' </div>';
-
-
                 }
-
             } catch (PDOException $th) {
                 echo $th->getMessage();
-
             }
             ?>
-
-    </div>
-
-
-</div>
-
-</div>
-<div class="main-container ">
-
-    <div class="col-md-12">
-        <div class="row justify-content-md-center ">
-            <h1 style="text-align: center; padding-top: 30px">More packages are comming soon! Stay tuned......</h1>
-
         </div>
     </div>
-
-
+</div>
+<div class="main-container ">
+    <div class="col-md-12">
+        <div class="row justify-content-md-center ">
+            <h1 style="text-align: center; padding-top: 30px">More packages are coming soon! Stay tuned......</h1>
+        </div>
+    </div>
 </div>
 <?php include 'nav&footer/footer.php' ?>
 <script>
     function loadPage() {
-        window.location.href='addBooking.php'
+        window.location.href = 'addBooking.php'
     }
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

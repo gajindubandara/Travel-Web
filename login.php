@@ -1,6 +1,6 @@
 <?php
 include("config.php");
-session_start();?>
+session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +15,6 @@ session_start();?>
 </head>
 <body>
 <?php include 'nav&footer/nav.php' ?>
-
 <div class="main-container ">
     <form method="post" style="margin-top: 30px">
         <div class="col-md-12">
@@ -37,56 +36,42 @@ session_start();?>
             </div>
         </div>
     </form>
-
-
-        <div class="container">
-            <div class="row justify-content-md-center ">
-                <div class="col-md-6 ">
-                    <div style="margin: 0px 30px 0px 30px; text-align: center">
-                   <h5><a href="register.php">If you don't have a account please create a new one. Click Here!</a></h5>
-                    </div>
+    <div class="container">
+        <div class="row justify-content-md-center ">
+            <div class="col-md-6 ">
+                <div style="margin: 0px 30px 0px 30px; text-align: center">
+                    <h5><a href="register.php">If you don't have a account please create a new one. Click Here!</a></h5>
                 </div>
             </div>
         </div>
-
+    </div>
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST["logUser"])) {
             try {
                 $conn = new PDO($db, $un, $password);
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $query = $query = "SELECT `UID`,`Username` FROM `users` WHERE `password`=? and `Username`=? ";
+                $query = "SELECT `UID`,`Username` FROM `users` WHERE `password`=? and `Username`=? ";
                 $st = $conn->prepare($query);
-                $enteredPW =md5($_POST["U_PW"]);
-
+                $enteredPW = md5($_POST["U_PW"]);
                 $st->bindValue(1, $enteredPW, PDO::PARAM_STR);
                 $st->bindValue(2, $_POST["U_UN"], PDO::PARAM_STR);
                 $st->execute();
                 $result = $st->fetch();
-                if($result[1] == $_POST["U_UN"])
-                {
-//                    header("location:packages.php");
-                    echo "<script>window.location.href='index.php';</script>";
-                    $_SESSION["u_uid"] =$result[0];
-                    $_SESSION["u_un"] =$result[1];
-
-                }
-                else{
+                if ($result[1] == $_POST["U_UN"]) {
+                    echo "<script>window.location.href='index.php'</script>";
+                    $_SESSION["u_uid"] = $result[0];
+                    $_SESSION["u_un"] = $result[1];
+                } else {
                     echo '<script>alert("Incorrect user name or password")</script>';
                 }
-
             } catch (PDOException $th) {
                 echo $th->getMessage();
             }
         }
     }
     ?>
-
 </div>
-
-
-
-
 <img src="images/bg.jpg" class="img-bg">
 <?php include 'nav&footer/footer.php' ?>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

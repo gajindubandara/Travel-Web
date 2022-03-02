@@ -12,11 +12,9 @@
 </head>
 <body>
 <?php include 'nav&footer/nav.php' ?>
-
 <div class="main-container ">
     <div class="col-md-12">
-    <div class="row justify-content-md-center">
-
+        <div class="row justify-content-md-center">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -43,18 +41,14 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
-
         </div>
     </div>
 </div>
-
 <div class="main-container ">
-
     <div class="col-md-12">
-        <h1 style="text-align: center;">Make Your  Dream Adventure Become A Reality.......</h1>
+        <h1 style="text-align: center;">Make Your Dream Adventure Become A Reality.......</h1>
         <h2 style="text-align: center; margin-top: 100px">- Things to see in Sri Lanka -</h2>
         <div class="row justify-content-md-center " style="margin-top: 50px">
-
             <div class="card card-style" style="width: 500px">
                 <h3 class="card-title">Water Falls</h3>
                 <img class="card-img-top card-img" src="images/waterfalls.jpg" alt="Card image cap">
@@ -77,60 +71,51 @@
                         aesthetic, and ecological value. </p>
                 </div>
             </div>
-
-
-
         </div>
         <div class="row justify-content-md-center ">
-
             <div class="card card-style" style="width: 500px">
                 <h3 class="card-title">Forests</h3>
                 <img class="card-img-top card-img" src="images/for.jpg" alt="Card image cap">
                 <div class="card-body">
                     <p class="card-text">As Sri Lankans we are really lucky to dance forest like Sinharaja, Knuckles,
                         and Kanneliya</p>
-
                     <p> Sinharaja rain forest is the most important and the biggest forest in Sri Lanka. It has declared
                         as a
                         world heritage site by UNESCO in 1998. There are 192 endemic species of plants and trees in the
                         forest. </p>
                 </div>
             </div>
-
             <div class="card card-style" style="width: 500px">
                 <h3 class="card-title">Mountains</h3>
                 <img class="card-img-top card-img" src="images/moun.jpg" alt="Card image cap">
                 <div class="card-body">
-                    <p class="card-text">Geographically Sri Lanka is divided into two parts called central hills and coastal area.</p>
-                    <p>Some mountains in the central hills such as Piduruthalagala, Knuckles, Sri Paada and Namunukula are ideal ares for
+                    <p class="card-text">Geographically Sri Lanka is divided into two parts called central hills and
+                        coastal area.</p>
+                    <p>Some mountains in the central hills such as Piduruthalagala, Knuckles, Sri Paada and Namunukula
+                        are ideal ares for
                         hiking......</p>
                 </div>
             </div>
-
         </div>
         <div class="row justify-content-md-center ">
-
-
             <div class="card card-style" style="width: 500px">
                 <h3 class="card-title">Historical Places</h3>
                 <img class="card-img-top card-img" src="images/his.jpg" alt="Card image cap">
                 <div class="card-body">
-                    <p class="card-text">There are many places to visit in Sri Lanka that has a historical value such as Anuradhapura, Polonnaruwa and Sigiriya</p>
+                    <p class="card-text">There are many places to visit in Sri Lanka that has a historical value such as
+                        Anuradhapura, Polonnaruwa and Sigiriya</p>
                 </div>
             </div>
-
             <div class="card card-style" style="width: 500px">
                 <h3 class="card-title">Forts</h3>
                 <img class="card-img-top card-img" src="images/fort.jpg" alt="Card image cap">
                 <div class="card-body">
-                    <p class="card-text">The famous Dutch colonial forts in Sri Lanka are the best places to visit and enjoy</p>
+                    <p class="card-text">The famous Dutch colonial forts in Sri Lanka are the best places to visit and
+                        enjoy</p>
                 </div>
             </div>
-
         </div>
         <div class="row justify-content-md-center ">
-
-
             <div class="card card-style" style="width: 500px">
                 <h3 class="card-title">Coastal areas</h3>
                 <img class="card-img-top card-img" src="images/cos.jpg" alt="Card image cap">
@@ -138,15 +123,9 @@
                     <p class="card-text">Sri Lanka has attractive beaches such as Hikkaduwa, Unawatuna, Mirissa etc.</p>
                 </div>
             </div>
-
         </div>
     </div>
-
-
 </div>
-
-
-
 <?php include 'nav&footer/footer.php' ?>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
