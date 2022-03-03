@@ -14,14 +14,14 @@ session_start();
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </head>
-<body>
+<body class="bg">
 <?php include 'nav&footer/nav.php' ?>
 <div class="main-container ">
     <form method="post" style="margin-top: 30px">
         <div class="container">
             <div class="row justify-content-md-center ">
-                <div class="col-md-8">
-                    <h3 class="feature-title">Change Password</h3>
+                <div class="CardBgCol col-md-8">
+                    <h3 class="feature-title" style="text-align: center;margin-top: 20px">Change Password</h3>
                     <form method="post">
                         <div class="form-group">Old Password:
                             <input type="password" class="form-control" name="pOPW" required>

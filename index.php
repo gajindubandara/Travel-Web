@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </head>
-<body>
+<body class="bg">
 <?php include 'nav&footer/nav.php' ?>
 <div class="main-container ">
     <div class="col-md-12">
@@ -46,8 +46,11 @@
 </div>
 <div class="main-container ">
     <div class="col-md-12">
-        <h1 style="text-align: center;">Make Your Dream Adventure Become A Reality.......</h1>
-        <h2 style="text-align: center; margin-top: 100px">- Things to see in Sri Lanka -</h2>
+        <div class="container"
+             style="padding: 10px 5px 10px 5px;background-color:rgba(225,225,225,0.7);border-radius:10px">
+            <h1 style="text-align: center;margin:10px 0px 10px 0px">Places to visit in Sri Lanka.......</h1>
+        </div>
+
         <div class="row justify-content-md-center " style="margin-top: 50px">
             <div class="card card-style" style="width: 500px">
                 <h3 class="card-title">Water Falls</h3>

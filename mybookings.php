@@ -14,13 +14,13 @@ session_start(); ?>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </head>
-<body>
+<body class="bg">
 <?php include 'nav&footer/nav.php' ?>
 <div class="main-container ">
     <form method="post" style="margin-top: 30px">
         <div class="container">
             <div class="row justify-content-md-center ">
-                <div class="col-md-8 ">
+                <div class="CardBgCol col-md-8  ">
                     <?php
                     if (isset($_POST['btnView'])) {
                         try {
@@ -30,7 +30,7 @@ session_start(); ?>
                             $query = "SELECT `BID`,packages.Name,`Start`, `BDay`, bookings.Des, `Status`,`No`,`Total` FROM bookings 
                                         JOIN packages ON Package=packages.ID WHERE bookings.BID=$bid;";
                             $result = $conn->query($query);
-                            echo '<h3 style="text-align: center;">Tour Information</h3>';
+                            echo '<h3 style="text-align: center; margin-top: 20px">Tour Information</h3>';
                             echo '<table class="table" style="margin-top: 50px">';
                             foreach ($result as $row) {
                                 if ($row[5] == 0) {
@@ -92,7 +92,7 @@ session_start(); ?>
     <form method="post">
         <div class="container" style="margin-top: 30px">
             <div class="row justify-content-md-center ">
-                <div class="col-md-8">
+                <div class="CardBgCol col-md-8">
                     <?php
                     try {
                         $booking = $_SESSION["u_uid"];
@@ -101,7 +101,7 @@ session_start(); ?>
                         $query = "SELECT `BID`,packages.Name,`Status` FROM bookings  JOIN packages ON Package=packages.ID 
                                     WHERE bookings.Name=$booking ORDER BY `Status` DESC";
                         $result = $conn->query($query);
-                        echo '<h3 style="text-align: center;">My Bookings</h3>';
+                        echo '<h3 style="text-align: center; margin-top: 20px">My Bookings</h3>';
                         echo '<table class="table" style="border:solid #dee2e6 1px;">';
                         echo '<thead class="thead-dark">';
                         echo '

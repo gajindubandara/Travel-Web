@@ -13,9 +13,10 @@ session_start(); ?>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </head>
-<body>
+<body class="bg">
 <?php include 'nav&footer/nav.php' ?>
 <div class="main-container ">
+    <h1 class="card-title" style="margin-top: 50px">Dream Tour Sri Lanka</h1>
     <form method="post" style="margin-top: 30px">
         <div class="col-md-12">
             <div class="row justify-content-md-center " style="margin-top: 50px">
@@ -36,11 +37,12 @@ session_start(); ?>
             </div>
         </div>
     </form>
-    <div class="container">
+    <div class="container" style="margin-top: 100px">
         <div class="row justify-content-md-center ">
             <div class="col-md-6 ">
-                <div style="margin: 0px 30px 0px 30px; text-align: center">
-                    <h5><a href="register.php">If you don't have a account please create a new one. Click Here!</a></h5>
+                <div style="margin: 0px 30px 0px 30px; text-align: center; ">
+                    <h4 class="link">If you don't have a account
+                        please create a new one.<br><a href="register.php"> Click Here!</a></h4>
                 </div>
             </div>
         </div>
@@ -72,7 +74,6 @@ session_start(); ?>
     }
     ?>
 </div>
-<img src="images/bg.jpg" class="img-bg">
 <?php include 'nav&footer/footer.php' ?>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

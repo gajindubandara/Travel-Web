@@ -13,14 +13,14 @@ include("config.php"); ?>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </head>
-<body>
+<body class="bg">
 <?php include 'nav&footer/nav.php' ?>
 <div class="main-container ">
     <form method="post" style="margin-top: 30px">
         <div class="container">
             <div class="row justify-content-md-center ">
-                <div class="col-md-8 ">
-                    <h3 style="text-align: center;">Create a new booking</h3>
+                <div class="CardBgCol col-md-8 ">
+                    <h3 style="text-align: center;margin-top: 20px">Create a new booking</h3>
                     <div class="form-group">
                         Package:
                         <select class="form-control" name="pack" required>

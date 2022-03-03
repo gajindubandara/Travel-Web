@@ -13,7 +13,7 @@ session_start(); ?>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </head>
-<body>
+<body class="bg">
 <?php include 'nav&footer/nav.php' ?>
 <div class="main-container" style="padding-top: 30px">
     <div class="col-md-12">
@@ -25,7 +25,7 @@ session_start(); ?>
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder=" Search by tour" name="pack">
                         </div>
-                        <input type="submit" class="btn btn-primary form-btn" value="Search" name="find">
+                        <input type="submit" class="btn btn-primary form-btn btn-lg" value="Search" name="find">
                     </div>
                 </div>
             </div>
@@ -74,7 +74,8 @@ session_start(); ?>
 <div class="main-container ">
     <div class="col-md-12">
         <div class="row justify-content-md-center ">
-            <h1 style="text-align: center; padding-top: 30px">More packages are coming soon! Stay tuned......</h1>
+            <h1 style="text-align: center; padding: 10px 5px 10px 5px;background-color:rgba(225,225,225,0.7);border-radius:5px">
+                More packages are coming soon! Stay tuned......</h1>
         </div>
     </div>
 </div>
