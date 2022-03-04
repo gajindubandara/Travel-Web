@@ -120,7 +120,7 @@
         </div>
         <div class="row justify-content-md-center ">
             <div class="card card-style" style="width: 500px">
-                <h3 class="card-title">Coastal areas</h3>
+                <h3 class="card-title">Coastal Areas</h3>
                 <img class="card-img-top card-img" src="images/cos.jpg" alt="Card image cap">
                 <div class="card-body">
                     <p class="card-text">Sri Lanka has attractive beaches such as Hikkaduwa, Unawatuna, Mirissa etc.</p>
