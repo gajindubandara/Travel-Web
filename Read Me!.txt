@@ -1,0 +1,44 @@
+*****Home page*****
+page link- Travel-Web/index.php
+
+
+*****Admin login*****
+page link- Travel-Web/adminlogin.php
+Username -admin
+Password -1234
+
+
+*****User logins*****
+
+Username -Ben10
+Password -Hello
+
+Username -scott_00
+Password -Hello
+
+Username -ang22
+Password -Hello
+
+Username -adm_ho
+Password -Hello
+
+Username -PatFerris
+Password -Hello
+
+Username -dustin66
+Password -Hello
+
+Username -tim
+Password -Hello
+
+Username -ivan_b
+Password -Hello
+
+Username -oscar
+Password -Hello
+
+Username -will
+Password -Hello
+
+Username -mark42
+Password -Hello

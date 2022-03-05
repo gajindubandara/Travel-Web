@@ -54,7 +54,7 @@
         <div class="row justify-content-md-center " style="margin-top: 50px">
             <div class="card card-style" style="width: 500px">
                 <h3 class="card-title">Water Falls</h3>
-                <img class="card-img-top card-img" src="images/waterfalls.jpg" alt="Card image cap">
+                <img class="card-img-top card-img" src="images/waterfalls.jpg" alt="Card image">
                 <div class="card-body">
                     <p class="card-text">There are several waterfalls in Sri Lanka. Which attract both Local and
                         international tourists with their enchanting scenic beauty.</p>
@@ -65,7 +65,7 @@
             </div>
             <div class="card card-style" style="width: 500px">
                 <h3 class="card-title">Botanical Gardens</h3>
-                <img class="card-img-top card-img" src="images/gar.jpg" alt="Card image cap">
+                <img class="card-img-top card-img" src="images/gar.jpg" alt="Card image">
                 <div class="card-body">
                     <p class="card-text">Sri Lanka is well known for its biodiversity. As a tropical country, there are
                         some botanical gardens such as Peradeniya botanical garden, Seethawaka wet zone botanical
@@ -78,7 +78,7 @@
         <div class="row justify-content-md-center ">
             <div class="card card-style" style="width: 500px">
                 <h3 class="card-title">Forests</h3>
-                <img class="card-img-top card-img" src="images/for.jpg" alt="Card image cap">
+                <img class="card-img-top card-img" src="images/for.jpg" alt="Card image">
                 <div class="card-body">
                     <p class="card-text">As Sri Lankans we are really lucky to dance forest like Sinharaja, Knuckles,
                         and Kanneliya</p>
@@ -90,7 +90,7 @@
             </div>
             <div class="card card-style" style="width: 500px">
                 <h3 class="card-title">Mountains</h3>
-                <img class="card-img-top card-img" src="images/moun.jpg" alt="Card image cap">
+                <img class="card-img-top card-img" src="images/moun.jpg" alt="Card image">
                 <div class="card-body">
                     <p class="card-text">Geographically Sri Lanka is divided into two parts called central hills and
                         coastal area.</p>
@@ -103,7 +103,7 @@
         <div class="row justify-content-md-center ">
             <div class="card card-style" style="width: 500px">
                 <h3 class="card-title">Historical Places</h3>
-                <img class="card-img-top card-img" src="images/his.jpg" alt="Card image cap">
+                <img class="card-img-top card-img" src="images/his.jpg" alt="Card image">
                 <div class="card-body">
                     <p class="card-text">There are many places to visit in Sri Lanka that has a historical value such as
                         Anuradhapura, Polonnaruwa and Sigiriya</p>
@@ -111,7 +111,7 @@
             </div>
             <div class="card card-style" style="width: 500px">
                 <h3 class="card-title">Forts</h3>
-                <img class="card-img-top card-img" src="images/fort.jpg" alt="Card image cap">
+                <img class="card-img-top card-img" src="images/fort.jpg" alt="Card image">
                 <div class="card-body">
                     <p class="card-text">The famous Dutch colonial forts in Sri Lanka are the best places to visit and
                         enjoy</p>
@@ -121,7 +121,7 @@
         <div class="row justify-content-md-center ">
             <div class="card card-style" style="width: 500px">
                 <h3 class="card-title">Coastal Areas</h3>
-                <img class="card-img-top card-img" src="images/cos.jpg" alt="Card image cap">
+                <img class="card-img-top card-img" src="images/cos.jpg" alt="Card image">
                 <div class="card-body">
                     <p class="card-text">Sri Lanka has attractive beaches such as Hikkaduwa, Unawatuna, Mirissa etc.</p>
                 </div>

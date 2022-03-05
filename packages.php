@@ -46,7 +46,7 @@ session_start(); ?>
                 foreach ($result as $row) {
                     echo '<div class="card card-style" style="width: 500px">';
                     echo '<h3 class="card-title">' . $row[1] . '</h3>';
-                    echo ' <img class="card-img-top card-img" src="' . $row[2] . '" alt="Card image cap">';
+                    echo ' <img class="card-img-top card-img" src="' . $row[2] . '" alt="Card image">';
                     echo '<div class="card-body">';
                     echo '<h5 style="text-align: center">' . $row[3] . '</h5>';
                     echo '<br>';

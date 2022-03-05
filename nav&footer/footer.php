@@ -27,6 +27,7 @@
                 </ul>
             </div>
         </div>
+<div class="footer-copyright">&copy; Copyright 2018, Dream Tours Sri Lanka </div>
     </div>
 </footer>
 </body>

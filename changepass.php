@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-<img src="images/bg.jpg" class="img-bg">
+<img src="images/bg.jpg" class="img-bg" alt="Adventure image">
 <?php include 'nav&footer/footer.php' ?>
 <script>
     function changePage() {
